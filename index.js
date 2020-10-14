@@ -16,7 +16,7 @@ const middleware = webpackMiddleware(compiler, {
 });
 app.use(middleware);
 
-// index.htmlをルーティングする
+// index.htmlにルーティングする
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
 });
