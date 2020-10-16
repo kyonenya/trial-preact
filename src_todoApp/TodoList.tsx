@@ -1,8 +1,8 @@
 import { h, render } from 'preact'; 
 
+import { checkTodoable, deleteTodoable } from './App';
 import { TodoItem } from './TodoItem';
 import { /* todosModel, */todoModelable } from './todosModel';
-import { checkTodoable, deleteTodoable } from './App';
 
 /**
  * 
@@ -26,9 +26,14 @@ export const TodoList = (props: TodoListProps) => {
       />
     );
   });
+  
   return (
     <ul>
-      {todos}
+      {props.todos.length > 0 
+        ? todos
+        // タスクが空のときの表示
+        : <p>するべきことは何もない</p>
+      }
     </ul>
   );
 }
