@@ -1,56 +1,51 @@
 body {
-  font-size: 16px;
-  font-family: Verdana, sans-serif;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
 }
 
-.container {
-  width: 300px;
-  margin: auto;
+ol, ul {
+  padding-left: 30px;
 }
 
-.container h1 {
-  font-size: 16px;
-  border-bottom: 1px solid #ddd;
-  padding: 16px 0;
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
 }
 
-.container ul {
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
   padding: 0;
-  list-style: none;
+  text-align: center;
+  width: 34px;
 }
 
-.container li {
-  line-height: 1.5;
+.square:focus {
+  outline: none;
 }
 
-.container input[type="checkbox"] {
-  margin-right: 5px;
+.kbd-navigation .square:focus {
+  background: #ddd;
 }
 
-.cmd {
-  font-size: 12px;
-  cursor: pointer;
-  color: #08c;
-  margin-left: 5px;
+.game {
+  display: flex;
+  flex-direction: row;
 }
 
-.container input[type="text"] {
-  padding: 2px;
-  margin-right: 5px;
+.game-info {
+  margin-left: 20px;
 }
 
-h1 > span {
-  color: gray;
-  font-size: 12px;
-  font-weight: normal;
-  margin-left: 5px;
-}
-
-h1 > button {
-  float: right;
-}
-
-.done {
-  text-decoration: line-through;
-  color: #ccc;
-}

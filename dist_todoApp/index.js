@@ -1,3 +1,3 @@
-import { h, render } from 'preact';
-import { App } from './App';
-render(h(App, null), document.getElementById('root'));
+import { h } from 'preact';
+import { LegacyTimer } from './LegacyTimer';
+ReactDOM.render(h(LegacyTimer, null), document.querySelector('#root'));

@@ -70,6 +70,14 @@ export const App = () => {
       return eventTarget.value;
     });
   }
+  /*
+  componentDidUpdate() {
+    localStrage.setItem('todos', JSON.stringify(todos));
+  }
+  componentDidMount() {
+    setTodos(JSON.parse(localStorage.getItem('todos'))||[]);
+  }
+  */
   
   const addTodo: addTodoable = (e) => {
     e.preventDefault();
