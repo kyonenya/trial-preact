@@ -3,27 +3,23 @@ import { Square } from './Square';
 
 export const Board = () => {
   const status = 'Next player: X';
+  const row = 3;
+  const column = 3;
   return (
     <div>
       <div className="status">{status}</div>
-      <div className="board-row">
-        // 0-2
-        <Square />
-        <Square />
-        <Square />
-      </div>
-        // 3-5
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      // 6-8
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-     </div>
+        {[...Array(row)].map((_, i) => {  // _：値を使用しない
+          return (
+            <div className="board-row" key={i}>
+              {[...Array(column)].map((_, j) => {
+                const index = i * 3 + j;
+                return (
+                  <Square value={index} key={index} />
+                );
+              })}
+            </div>
+          );
+        })}
     </div>
   );
 }
