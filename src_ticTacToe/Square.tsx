@@ -1,17 +1,15 @@
 import { h, render } from 'preact';
-import { useState } from 'preact/hooks';
 
-export const Square = (props: any) => {
-  const [value, setValue] = useState(props.value);
-  const check = () => {
-    setValue('X');
-  }
-  
+type squareProps = {
+  value: string,
+  handleClick: any,
+};
+export const Square = (props: squareProps) => { 
   return (
     <button className="square"
-      onClick={check}
+      onClick={props.handleClick}
     >
-      {value}
+      {props.value}
     </button>
   );
 }
