@@ -1,10 +1,11 @@
 import { h } from 'preact';
-import { Square } from './Square';
 import { useState } from 'preact/hooks';
+import { Square } from './Square';
 export const Board = () => {
     const status = 'Next player: X';
     const row = 3;
     const column = 3;
+    // useStateはジェネリクスをつけて呼べば、分割代入している左辺も型付けされる
     const [squares, setSquares] = useState(Array(row * column).fill(null)); // [null, null, ...]
     const handleClick = (index) => {
         setSquares((prevSquares) => {

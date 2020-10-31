@@ -1,9 +1,11 @@
 import { h, render } from 'preact';
+import { squarable } from './interface';
 
 type squareProps = {
-  value: string,
+  value: squarable,
   handleClick: any,
 };
+
 export const Square = (props: squareProps) => { 
   return (
     <button className="square"

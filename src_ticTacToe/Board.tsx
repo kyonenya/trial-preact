@@ -1,15 +1,17 @@
 import { h, render } from 'preact';
-import { Square } from './Square';
 import { useState } from 'preact/hooks';
+import { Square } from './Square';
+import { squarable } from './interface';
 
 export const Board = () => {
   const status = 'Next player: X';
   const row = 3;
   const column = 3;
-
-  const [squares, setSquares] = useState(Array(row * column).fill(null));  // [null, null, ...]
-  const handleClick = (index: any) => {
-    setSquares((prevSquares) => {
+  
+  // useStateはジェネリクスをつけて呼べば、分割代入している左辺も型付けされる
+  const [squares, setSquares] = useState<squarable[]>(Array(row * column).fill(null));  // [null, null, ...]
+  const handleClick = (index: number) => {
+    setSquares((prevSquares: squarable[]) => {
       const squares = prevSquares.slice();
       squares[index] = 'X';
       
