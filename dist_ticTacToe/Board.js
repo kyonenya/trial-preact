@@ -19,7 +19,9 @@ export const Board = () => {
         [...Array(row).keys()].map((i) => {
             return (h("div", { className: "board-row", key: i }, [...Array(column).keys()].map((j) => {
                 const index = i * 3 + j;
-                return (h(Square, { value: squares[index], handleClick: () => handleClick(index), key: index }));
+                return (h(Square, { value: squares[index], 
+                    // スイッチにあらかじめ引数をセットして渡す
+                    handleClick: () => handleClick(index), key: index }));
             })));
         })));
 };

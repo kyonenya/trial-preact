@@ -1,7 +1,7 @@
 import { h, render } from 'preact';
 import { useState } from 'preact/hooks';
 import { Square } from './Square';
-import { squarable } from './interface';
+import { squarable, handleClickable } from './interface';
 
 export const Board = () => {
   const status = 'Next player: X';
@@ -9,8 +9,9 @@ export const Board = () => {
   const column = 3;
   
   // useStateはジェネリクスをつけて呼べば、分割代入している左辺も型付けされる
-  const [squares, setSquares] = useState<squarable[]>(Array(row * column).fill(null));  // [null, null, ...]
-  const handleClick = (index: number) => {
+  const [squares, setSquares] = useState<squarable[]>(Array(row * column).fill(null)); // [null, null, ...]
+  
+  const handleClick: handleClickable = (index: number) => {
     setSquares((prevSquares: squarable[]) => {
       const squares = prevSquares.slice();
       squares[index] = 'X';
@@ -22,7 +23,7 @@ export const Board = () => {
   return (
     <div>
       <div className="status">{status}</div>
-        {[...Array(row).keys()].map((i) => {  // [0, 1, 2].map()
+        {[...Array(row).keys()].map((i) => { // [0, 1, 2].map()
           return (
             <div className="board-row" key={i}>
               {[...Array(column).keys()].map((j) => {
@@ -30,6 +31,7 @@ export const Board = () => {
                 return (
                   <Square
                     value={squares[index]}
+                    // スイッチにあらかじめ引数をセットして渡す
                     handleClick={() => handleClick(index)}
                     key={index} 
                   />
