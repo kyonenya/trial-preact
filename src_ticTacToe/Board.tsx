@@ -10,11 +10,16 @@ export const Board = () => {
   
   // useStateはジェネリクスをつけて呼べば、分割代入している左辺も型付けされる
   const [squares, setSquares] = useState<squarable[]>(Array(row * column).fill(null)); // [null, null, ...]
+  // 手番（X→O→X→...）
+  const [xIsNext, setXIsNext] = useState<boolean>(true);
   
-  const handleClick: handleClickable = (index: number) => {
+  const handleClick = (index: number): void => {
     setSquares((prevSquares: squarable[]) => {
       const squares = prevSquares.slice();
-      squares[index] = 'X';
+      squares[index] = xIsNext
+        ? 'X'
+        : 'O';
+      setXIsNext(!xIsNext);
       
       return squares;
     });
@@ -32,7 +37,7 @@ export const Board = () => {
                   <Square
                     value={squares[index]}
                     // スイッチにあらかじめ引数をセットして渡す
-                    handleClick={() => handleClick(index)}
+                    onClick={() => handleClick(index)}
                     key={index} 
                   />
                 );

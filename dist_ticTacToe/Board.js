@@ -7,10 +7,15 @@ export const Board = () => {
     const column = 3;
     // useStateはジェネリクスをつけて呼べば、分割代入している左辺も型付けされる
     const [squares, setSquares] = useState(Array(row * column).fill(null)); // [null, null, ...]
+    // 手番（X→O→X→...）
+    const [xIsNext, setXIsNext] = useState(true);
     const handleClick = (index) => {
         setSquares((prevSquares) => {
             const squares = prevSquares.slice();
-            squares[index] = 'X';
+            squares[index] = xIsNext
+                ? 'X'
+                : 'O';
+            setXIsNext(!xIsNext);
             return squares;
         });
     };
@@ -21,7 +26,7 @@ export const Board = () => {
                 const index = i * 3 + j;
                 return (h(Square, { value: squares[index], 
                     // スイッチにあらかじめ引数をセットして渡す
-                    handleClick: () => handleClick(index), key: index }));
+                    onClick: () => handleClick(index), key: index }));
             })));
         })));
 };

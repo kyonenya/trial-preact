@@ -4,13 +4,13 @@ import { squarable } from './interface';
 type squareProps = {
   value: squarable,
   // 引数つきスイッチには、押すときに起こるイベントの型だけつければいい
-  handleClick: (event: MouseEvent) => void,
+  onClick: (event: MouseEvent) => void,
 };
 
 export const Square = (props: squareProps) => { 
   return (
     <button className="square"
-      onClick={props.handleClick}
+      onClick={props.onClick}
     >
       {props.value}
     </button>
