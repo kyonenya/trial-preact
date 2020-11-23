@@ -3,7 +3,7 @@ import { squarable } from './interface';
 
 type squareProps = {
   value: squarable,
-  // 引数つきスイッチには、押すときに起こるイベントの型だけつければいい
+  // 引数つきスイッチには、押すときに起こるイベントの型だけつける
   onClick: (event: MouseEvent) => void,
 };
 
