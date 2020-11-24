@@ -1,4 +1,5 @@
 import { h, render } from 'preact';
+import { useState } from 'preact/hooks';
 import { squarable } from './interface';
 
 type squareProps = {
