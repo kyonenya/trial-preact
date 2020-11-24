@@ -12,36 +12,56 @@ export const Game = () => {
       { squares: Array(row * column).fill(null) }
     ]); 
   const [xIsNext, setXIsNext] = useState<boolean>(true);
+  const [stepNumber, setStepNumber] = useState<number>(0);
   
-  const winner = calculateWinner(history[history.length - 1].squares);
+  const winner = calculateWinner(history[stepNumber].squares);
   const status = winner
     ? `Winner: ${winner}`
     : `Next player: ${xIsNext ? 'X' : 'O'}`;
   
   const handleClick = (index: number): void => {
-    if (winner) return;
-    setHistory((prevHistory) => {
-      const squares = prevHistory[prevHistory.length - 1].squares;
+      const _history = history.slice(0, stepNumber + 1);
+      const squares = _history[_history.length - 1].squares.slice();
+      if (winner || squares[index]) return;
+      
       squares[index] = xIsNext
         ? 'X'
         : 'O';
-      setXIsNext(!xIsNext);
-      
-      return [...prevHistory, { squares }];
-    });
+
+    setHistory(() => [..._history, { squares }]);
+    setXIsNext(() => !xIsNext);
+    setStepNumber(() => _history.length); // overwrite
+  }
+  
+  const jumpTo = (step: number) => {
+    setStepNumber(() => step);
+    setXIsNext(() => (step % 2) === 0);
   }
 
   return (
     <div className="game">
       <div className="game-board">
         <Board 
-          squares={history[history.length - 1].squares}
+          squares={history[stepNumber].squares}
           onClick={(index: number) => handleClick(index)}
         />
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>{/* TODO */}</ol>
+        <ol>{history.map((aHistory, index) => {
+              return (
+                <li key={index}>
+                  <button onClick={() => jumpTo(index)}>
+                    {
+                      index
+                        ? 'Go to move #' + index
+                        : 'Go to game start'
+                    }
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
       </div>
     </div>
   );

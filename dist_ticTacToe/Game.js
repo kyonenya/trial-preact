@@ -8,28 +8,38 @@ export const Game = () => {
         { squares: Array(row * column).fill(null) }
     ]);
     const [xIsNext, setXIsNext] = useState(true);
-    const winner = calculateWinner(history[history.length - 1].squares);
+    const [stepNumber, setStepNumber] = useState(0);
+    const winner = calculateWinner(history[stepNumber].squares);
     const status = winner
         ? `Winner: ${winner}`
         : `Next player: ${xIsNext ? 'X' : 'O'}`;
     const handleClick = (index) => {
-        if (winner)
+        const _history = history.slice(0, stepNumber + 1);
+        const squares = _history[_history.length - 1].squares.slice();
+        if (winner || squares[index])
             return;
-        setHistory((prevHistory) => {
-            const squares = prevHistory[prevHistory.length - 1].squares;
-            squares[index] = xIsNext
-                ? 'X'
-                : 'O';
-            setXIsNext(!xIsNext);
-            return [...prevHistory, { squares }];
-        });
+        squares[index] = xIsNext
+            ? 'X'
+            : 'O';
+        setHistory(() => [..._history, { squares }]);
+        setXIsNext(() => !xIsNext);
+        setStepNumber(() => _history.length); // overwrite
+    };
+    const jumpTo = (step) => {
+        setStepNumber(() => step);
+        setXIsNext(() => (step % 2) === 0);
     };
     return (h("div", { className: "game" },
         h("div", { className: "game-board" },
-            h(Board, { squares: history[history.length - 1].squares, onClick: (index) => handleClick(index) })),
+            h(Board, { squares: history[stepNumber].squares, onClick: (index) => handleClick(index) })),
         h("div", { className: "game-info" },
             h("div", null, status),
-            h("ol", null))));
+            h("ol", null, history.map((aHistory, index) => {
+                return (h("li", { key: index },
+                    h("button", { onClick: () => jumpTo(index) }, index
+                        ? 'Go to move #' + index
+                        : 'Go to game start')));
+            })))));
 };
 const calculateWinner = (squares) => {
     const lines = [
