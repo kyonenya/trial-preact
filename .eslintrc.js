@@ -41,6 +41,6 @@ module.exports = {
     'import/prefer-default-export': 0,
     'no-use-before-define': 0, // 'h' from preact
     'react/jsx-filename-extension': 0,
-    'import-extensions': 0,
+    'import/extensions': 0,
   },
 };
