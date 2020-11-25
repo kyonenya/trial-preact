@@ -1,17 +1,15 @@
-import { h, FunctionalComponent } from 'preact';
+import { h, FunctionComponent } from 'preact';
+import { squarable } from './types';
 
-/*
-export const Square: FunctionalComponent = () => (
-  <button className="square" type="button">
-    {}
-  </button>
-);
-*/
+type squareProps = {
+  square: squarable,
+  key: number,
+};
 
-export const Square: FunctionalComponent = () => {
+export const Square: FunctionComponent<squareProps> = (props: squareProps) => {
   return (
     <button className="square" type="button">
-      {/* TODO */}
+      {props.square}
     </button>
   );
 };

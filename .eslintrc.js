@@ -12,7 +12,7 @@ module.exports = {
   extends: [
     'preact',
     'eslint:recommended',
-    'airbnb',
+//    'airbnb',
     'airbnb/hooks',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',

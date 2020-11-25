@@ -11,21 +11,20 @@ export const Board: FunctionComponent<boardProps> = (props: boardProps) => {
   return (
     <div>
       <div className="status">{status}</div>
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
-      <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
-      </div>
+      {
+        [...Array(3).keys()].map((i) => (
+          <div className="board-row">
+            {
+              [...Array(3).keys()].map((j) => (
+                <Square
+                  square={props.squares[i * 3 + j]}
+                  key={i * 3 + j}
+                />
+              ))
+            }
+          </div>
+        ))
+      }
     </div>
   );
 };

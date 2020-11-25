@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks';
 import { Board } from './Board';
 export const Game = () => {
     const [histories, setHistories] = useState([
-        { squares: Array(9).fill('X') },
+        { squares: Array(9).fill(null) },
     ]);
     const [xIsNext, setXIsNext] = useState(true);
     const handleClick = (index) => {
