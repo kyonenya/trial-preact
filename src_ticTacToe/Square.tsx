@@ -1,9 +1,9 @@
-import { h } from 'preact';
+import { h, FunctionalComponent } from 'preact';
 
-export const Square = () => {
+export const Square: FunctionalComponent = () => {
   return (
-    <button className="square">
+    <button className="square" type="button">
       {/* TODO */}
     </button>
   );
-}
+};

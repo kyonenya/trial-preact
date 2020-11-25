@@ -12,7 +12,7 @@ module.exports = {
   extends: [
     'preact',
     'eslint:recommended',
-    'airbnb',
+//    'airbnb',
     'airbnb/hooks',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -37,10 +37,13 @@ module.exports = {
   ],
   globals: {},
   rules: {
+    // disable while development
+    '@typescript-eslint/no-unused-vars': 0,
     // overwrite airbnb
     'import/prefer-default-export': 0,
     'no-use-before-define': 0, // 'h' from preact
     'react/jsx-filename-extension': 0,
     'import/extensions': 0,
+    
   },
 };

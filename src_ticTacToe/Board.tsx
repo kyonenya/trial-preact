@@ -1,7 +1,7 @@
-import { h } from 'preact';
+import { h, FunctionalComponent } from 'preact';
 import { Square } from './Square';
 
-export const Board = () => {
+export const Board: FunctionalComponent = () => {
   const status = 'Next player: X';
   return (
     <div>
@@ -20,7 +20,7 @@ export const Board = () => {
         <Square />
         <Square />
         <Square />
-     </div>
+      </div>
     </div>
   );
-}
+};
