@@ -3,5 +3,5 @@ import { Game } from './Game';
 
 render(
   <Game />,
-  document.getElementById('root')!
+  document.getElementById('root')!, // comma-dangle
 );

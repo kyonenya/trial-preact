@@ -6,11 +6,14 @@ module.exports = {
   settings: {
     react: {
       pragma: 'h',
+      version: 'latest',
     },
   },
   extends: [
     'preact',
-    'airbnb-base',
+    'eslint:recommended',
+    'airbnb',
+    'airbnb/hooks',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
@@ -27,9 +30,17 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
+    'import',
+    'jsx-a11y',
+    'react',
+    'react-hooks',
   ],
   globals: {},
   rules: {
+    // overwrite airbnb
     'import/prefer-default-export': 0,
+    'no-use-before-define': 0, // 'h' from preact
+    'react/jsx-filename-extension': 0,
+    'import-extensions': 0,
   },
 };
