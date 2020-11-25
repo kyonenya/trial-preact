@@ -2,8 +2,14 @@ module.exports = {
   env: {
     browser: true,
     es2020: true
-  },   
+  },
+  settings: {
+    react: {
+      pragma: 'h',
+    },
+  },
   extends: [
+    'preact',
     'airbnb-base',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
