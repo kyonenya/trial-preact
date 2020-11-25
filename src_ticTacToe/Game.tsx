@@ -22,7 +22,10 @@ export const Game: FunctionComponent = () => {
   return (
     <div className="game">
       <div className="game-board">
-        <Board squares={histories[histories.length - 1].squares} />
+        <Board
+          squares={histories[histories.length - 1].squares}
+          onClick={(index) => handleClick(index)}
+        />
       </div>
       <div className="game-info">
         <div>{/* status */}</div>
