@@ -25,7 +25,7 @@ module.exports = {
       jsx: true,
     },
     sourceType: 'module',
-    project: './tsconfig.eslint.json',
+//    project: './tsconfig.eslint.json',
     tsconfigRootDir: __dirname,
   },
   plugins: [

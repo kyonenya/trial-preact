@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { Square } from './Square';
-export const Board = () => {
+export const Board = (props) => {
     const status = 'Next player: X';
     return (h("div", null,
         h("div", { className: "status" }, status),

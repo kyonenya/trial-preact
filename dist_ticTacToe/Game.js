@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks';
 import { Board } from './Board';
 export const Game = () => {
     const [histories, setHistories] = useState([
-        { squares: Array(9).fill(null) } // generics
+        { squares: Array(9).fill('X') },
     ]);
     const [xIsNext, setXIsNext] = useState(true);
     const handleClick = (index) => {
@@ -17,7 +17,7 @@ export const Game = () => {
     };
     return (h("div", { className: "game" },
         h("div", { className: "game-board" },
-            h(Board, null)),
+            h(Board, { squares: histories[histories.length - 1].squares })),
         h("div", { className: "game-info" },
             h("div", null),
             h("ol", null))));

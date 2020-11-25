@@ -1,13 +1,11 @@
 import { h, FunctionalComponent } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
-
-type squarable = 'X' | 'O' | null;
-type historable = { squares: squarable[] };
+import { squarable, historable } from './types';
 
 export const Game: FunctionalComponent = () => {
   const [histories, setHistories] = useState<historable[]>([
-    { squares: Array<squarable>(9).fill(null) }, // generics
+    { squares: Array<squarable>(9).fill('X') }, // generics
   ]);
   const [xIsNext, setXIsNext] = useState<boolean>(true);
 
@@ -20,11 +18,13 @@ export const Game: FunctionalComponent = () => {
     });
     setXIsNext((prev) => !prev);
   };
-
+  
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board
+          squares={histories[histories.length - 1].squares}
+        />
       </div>
       <div className="game-info">
         <div>{/* status */}</div>

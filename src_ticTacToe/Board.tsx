@@ -1,7 +1,12 @@
-import { h, FunctionalComponent } from 'preact';
+import { h, FunctionComponent } from 'preact';
 import { Square } from './Square';
+import { squarable } from './types';
 
-export const Board: FunctionalComponent = () => {
+type boardProps = {
+  squares: squarable[],
+}
+
+export const Board: FunctionComponent<boardProps> = (props: boardProps) => {
   const status = 'Next player: X';
   return (
     <div>
