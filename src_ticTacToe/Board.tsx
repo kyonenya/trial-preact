@@ -8,7 +8,7 @@ type boardProps = {
 };
 
 export const Board: FunctionComponent<boardProps> = ({
-  squares, 
+  squares,
   onClick,
 }: boardProps) => {
   const status = 'Next player: X';
@@ -20,7 +20,11 @@ export const Board: FunctionComponent<boardProps> = ({
           {[...Array(3).keys()].map((j) => {
             const index = i * 3 + j;
             return (
-              <Square square={squares[index]} onClick={() => onClick(index)} key={index} />
+              <Square
+                square={squares[index]}
+                onClick={() => onClick(index)}
+                key={index}
+              />
             );
           })}
         </div>
