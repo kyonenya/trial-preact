@@ -2,7 +2,19 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
 
-export const Game = () => {
+type squarable = 'X' | 'O' | null;
+type historable = { squares: squarable[] };
+
+export const Game = () => {  
+  const [histories, setHistories] = useState<historable[]>([
+    { squares: Array<squarable>(9).fill(null) } // generics
+  ]);
+  const [xIsNext, setXIsNext] = useState<boolean>(true);
+  
+  const handleClick = (stepNumber: number): void => {
+
+  };
+  
   return (
     <div className="game">
       <div className="game-board">

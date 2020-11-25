@@ -5,19 +5,14 @@ export const Board = () => {
     return (h("div", null,
         h("div", { className: "status" }, status),
         h("div", { className: "board-row" },
-            "// 0-2",
             h(Square, null),
             h(Square, null),
-            h(Square, null))
-    // 3-5
-    ,
-        "// 3-5",
+            h(Square, null)),
         h("div", { className: "board-row" },
             h(Square, null),
             h(Square, null),
             h(Square, null)),
         h("div", { className: "board-row" },
-            "// 6-8",
             h(Square, null),
             h(Square, null),
             h(Square, null))));
