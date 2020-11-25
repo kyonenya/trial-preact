@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "typescript": "tsc --watch",
-    "eslint": "eslint"
+    "lint": "node index.lint.js"
   },
   "dependencies": {
     "@types/react": "^17.0.0",
