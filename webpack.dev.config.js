@@ -1,12 +1,13 @@
 const path = require('path');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   entry: './src_ticTacToe/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),  // 絶対パス
-    publicPath: '/dist/'  // 相対パス
+    path: path.resolve(__dirname, 'dist'), // 絶対パス
+    publicPath: '/dist/' // 相対パス
   },
   module: {
     rules: [
@@ -22,4 +23,10 @@ module.exports = {
     // モジュール名に拡張子がない場合、左から順に探して解決する
     extensions: ['.ts', '.tsx', '.js']
   },
+  plugins: [
+    new ESLintPlugin({
+      files: './src_ticTacToe/**',
+      // fix: true,
+    }),
+  ],
 }

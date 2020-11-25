@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src_ticTacToe/**/*.ts",
+    "src_ticTacToe/**/*.tsx",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
