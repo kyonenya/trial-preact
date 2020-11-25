@@ -1,8 +1,24 @@
 import { h } from 'preact';
-export const Board = (props) => {
+import { Square } from './Square';
+export const Board = () => {
+    const status = 'Next player: X';
     return (h("div", null,
-        h("div", { className: "status" }, status)));
+        h("div", { className: "status" }, status),
+        h("div", { className: "board-row" },
+            "// 0-2",
+            h(Square, null),
+            h(Square, null),
+            h(Square, null))
+    // 3-5
+    ,
+        "// 3-5",
+        h("div", { className: "board-row" },
+            h(Square, null),
+            h(Square, null),
+            h(Square, null)),
+        h("div", { className: "board-row" },
+            "// 6-8",
+            h(Square, null),
+            h(Square, null),
+            h(Square, null))));
 };
-div >
-;
-;

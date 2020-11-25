@@ -1,4 +1,4 @@
 import { h } from 'preact';
-export const Square = (props) => {
+export const Square = () => {
     return (h("button", { className: "square" }));
 };
