@@ -34,7 +34,10 @@ window.addEventListener('click', function(e) {
   }
 });
 window.onerror = function(message, source, line, col, error) {
-  var text = error ? error.stack || error : message + ' (at ' + source + ':' + line + ':' + col + ')';
+  if (line === 0 && col === 0) return;
+  const text = error 
+    ? error.stack || error 
+    : message + ' (at ' + source + ':' + line + ':' + col + ')';
   errors.textContent += text + '\n';
   errors.style.display = '';
 };

@@ -11,8 +11,15 @@ export const Game = () => {
   ]);
   const [xIsNext, setXIsNext] = useState<boolean>(true);
   
-  const handleClick = (stepNumber: number): void => {
-
+  const handleClick = (index: number): void => {
+    setHistories((prevHistories) => {
+      const squares 
+        = [...prevHistories[prevHistories.length - 1].squares];
+      // update clicked square
+      squares[index] = xIsNext ? 'X' : 'O';
+      return [...prevHistories, { squares }];
+    })
+    setXIsNext((prev) => !prev);
   };
   
   return (

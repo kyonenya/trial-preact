@@ -6,7 +6,14 @@ export const Game = () => {
         { squares: Array(9).fill(null) } // generics
     ]);
     const [xIsNext, setXIsNext] = useState(true);
-    const handleClick = (stepNumber) => {
+    const handleClick = (index) => {
+        setHistories((prevHistories) => {
+            const squares = [...prevHistories[prevHistories.length - 1].squares];
+            // update clicked square
+            squares[index] = xIsNext ? 'X' : 'O';
+            return [...prevHistories, { squares }];
+        });
+        setXIsNext((prev) => !prev);
     };
     return (h("div", { className: "game" },
         h("div", { className: "game-board" },
