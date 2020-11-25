@@ -12,7 +12,7 @@ module.exports = {
   extends: [
     'preact',
     'eslint:recommended',
-//    'airbnb',
+    'airbnb',
     'airbnb/hooks',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -44,6 +44,6 @@ module.exports = {
     'no-use-before-define': 0, // 'h' from preact
     'react/jsx-filename-extension': 0,
     'import/extensions': 0,
-    
+//    'arrow-body-style': 0,
   },
 };
