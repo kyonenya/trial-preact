@@ -1,5 +1,5 @@
 const path = require('path');
-//const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -24,6 +24,6 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
-//    new ESLintPlugin({ files: './src_ticTacToe/**', fix: true } ),
+    new ESLintPlugin({ files: './src_ticTacToe/**', fix: true } ),
   ],
 }

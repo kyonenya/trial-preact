@@ -12,7 +12,7 @@ module.exports = {
   extends: [
     'preact',
     'eslint:recommended',
-//    'airbnb',
+    'airbnb',
     'airbnb/hooks',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -25,7 +25,7 @@ module.exports = {
       jsx: true,
     },
     sourceType: 'module',
-//    project: './tsconfig.eslint.json',
+    project: './tsconfig.eslint.json',
     tsconfigRootDir: __dirname,
   },
   plugins: [

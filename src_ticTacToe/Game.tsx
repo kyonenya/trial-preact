@@ -18,7 +18,7 @@ export const Game: FunctionComponent = () => {
     });
     setXIsNext((prev) => !prev);
   };
-  
+
   return (
     <div className="game">
       <div className="game-board">
