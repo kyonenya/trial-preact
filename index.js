@@ -32,4 +32,4 @@ app.listen(port, () => {
 
 // Register app and middleware. Required for better
 // performance when running from play.js
-try { pjs.register(app, webpackMiddleware); } catch (error) { }
+try { pjs.register(app, middleware); } catch (error) { }
