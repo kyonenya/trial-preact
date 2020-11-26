@@ -6,10 +6,8 @@ export const Board: FC<{
   squares: squarable[];
   onClick: (index: number) => void;
 }> = ({ squares, onClick }) => {
-  const status = 'Next player: X';
   return (
     <div>
-      <div className="status">{status}</div>
       {[...Array(3).keys()].map((i) => (
         <div className="board-row">
           {[...Array(3).keys()].map((j) => {

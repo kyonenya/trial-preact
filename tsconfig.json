@@ -76,7 +76,6 @@
 ],
 // 35 exclude コンパイルしないファイルを除外する
 // "exclude": [
-//   "**/compiler.ts",
 //   "node_modules"
 // ],
 // 35 files 個別でコンパイルに含めたいファイルを指定
