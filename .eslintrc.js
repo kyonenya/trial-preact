@@ -12,16 +12,16 @@ module.exports = {
   extends: [
     'preact',
     'eslint:recommended',
-    'airbnb',
-    'airbnb/hooks',
-    'plugin:import/typescript',
+//    'airbnb',
+//    'airbnb/hooks',
+//    'plugin:import/typescript',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'prettier',
     'prettier/@typescript-eslint',
-    'prettier/react',
-    'prettier/standard',
+//    'prettier/react',
+//    'prettier/standard',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -34,21 +34,21 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint',
-    'import',
-    'jsx-a11y',
-    'react',
-    'react-hooks',
+//    'import',
+//    'jsx-a11y',
+//    'react',
+//    'react-hooks',
   ],
   globals: {},
   rules: {
-    // disable while development
-    '@typescript-eslint/no-unused-vars': 0,
-    // overwrite airbnb
-    'import/prefer-default-export': 0,
-    'no-use-before-define': 0, // 'h' from preact
-    'react/jsx-filename-extension': 0,
-    'import/extensions': 0,
-    'arrow-body-style': 0,
-    'react/prop-types': 0, // unnecessary in TS
+    /** disable while development */
+//    '@typescript-eslint/no-unused-vars': 0,
+    /** overwrite airbnb */
+//    'import/prefer-default-export': 0,
+//    'no-use-before-define': 0, // 'h' from preact
+//    'react/jsx-filename-extension': 0,
+//    'import/extensions': 0,
+//    'arrow-body-style': 0,
+//    'react/prop-types': 0, // unnecessary in TS
   },
 };

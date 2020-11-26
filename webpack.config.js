@@ -14,14 +14,19 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
-          'ts-loader',
-          'prettier-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
+          },
+          { loader: 'prettier-loader' },
         ],
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.js', 'jsx']
   },
   plugins: [
     new ESLintPlugin({
