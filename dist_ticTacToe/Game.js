@@ -9,7 +9,7 @@ export const Game = () => {
     ]);
     const [xIsNext, nextTurn] = useXIsNext();
     /** get current squares */
-    const squaresFor = (histories) => histories[histories.length - 1].squares;
+    const squaresFor = (histories) => histories.slice(-1)[0].squares;
     const winner = calculateWinner(squaresFor(histories));
     const handleClick = (index) => {
         if (winner)
@@ -28,9 +28,7 @@ export const Game = () => {
         h("div", { className: "game-board" },
             h(Board, { squares: squaresFor(histories), onClick: (index) => handleClick(index) })),
         h("div", { className: "game-info" },
-            h("div", null, winner
-                ? `Winner: ${winner}`
-                : `Next player: ${xIsNext ? 'X' : 'O'}`),
+            h("div", null, winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`),
             h(Moves, { histories: histories }))));
 };
 const calculateWinner = (squares) => {
@@ -44,7 +42,7 @@ const calculateWinner = (squares) => {
         [0, 4, 8],
         [2, 4, 6],
     ];
-    for (let i = 0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i += 1) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
             return squares[a];

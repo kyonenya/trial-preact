@@ -13,7 +13,7 @@ export const Game: FC = () => {
 
   /** get current squares */
   const squaresFor = (histories: historable[]): squarable[] =>
-    histories[histories.length - 1].squares;
+    histories.slice(-1)[0].squares;
   const winner = calculateWinner(squaresFor(histories));
   const handleClick = (index: number): void => {
     if (winner) return;
