@@ -5,6 +5,6 @@ export const useXIsNext = (): [boolean, () => void] => {
   const nextTurn = (): void => {
     setXIsNext(prev => !prev);
   }
-  
+
   return [xIsNext, nextTurn];
 }

@@ -1,6 +1,7 @@
 import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
+import { Moves } from './Moves';
 import { useXIsNext } from './useXIsNext';
 import { squarable, historable } from './types';
 
@@ -11,14 +12,12 @@ export const Game: FC = () => {
   const [xIsNext, nextTurn] = useXIsNext();
   
   const winner = calculateWinner(histories[histories.length - 1].squares);
-  const status = winner
-    ? `Winner: ${winner}`
-    : `Next player: ${xIsNext ? 'X' : 'O'}`;
-
+  const squaresFor = (histories: historable[]): squarable[] => histories[histories.length - 1].squares;
   const handleClick = (index: number): void => {
     if (winner) return;
+    if (squaresFor(histories)[index]) return; // if already clicked
     setHistories((prevHistories) => {
-      const squares = [...prevHistories[prevHistories.length - 1].squares];
+      const squares = [...squaresFor(prevHistories)];
       // update clicked square
       squares[index] = xIsNext ? 'X' : 'O';
       return [...prevHistories, { squares }];
@@ -30,13 +29,19 @@ export const Game: FC = () => {
     <div className="game">
       <div className="game-board">
         <Board
-          squares={histories[histories.length - 1].squares}
+          squares={squaresFor(histories)}
           onClick={(index) => handleClick(index)}
         />
       </div>
       <div className="game-info">
-        <div>{status}</div>
-        <ol>{/* TODO */}</ol>
+        <div>
+          {winner
+            ? `Winner: ${winner}`
+            : `Next player: ${xIsNext ? 'X' : 'O'}`}
+        </div>
+        <Moves 
+          histories={histories}
+        />
       </div>
     </div>
   );

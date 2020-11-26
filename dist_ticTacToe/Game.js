@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
+import { Moves } from './Moves';
 import { useXIsNext } from './useXIsNext';
 export const Game = () => {
     const [histories, setHistories] = useState([
@@ -8,14 +9,14 @@ export const Game = () => {
     ]);
     const [xIsNext, nextTurn] = useXIsNext();
     const winner = calculateWinner(histories[histories.length - 1].squares);
-    const status = winner
-        ? `Winner: ${winner}`
-        : `Next player: ${xIsNext ? 'X' : 'O'}`;
+    const squaresFor = (histories) => histories[histories.length - 1].squares;
     const handleClick = (index) => {
         if (winner)
             return;
+        if (squaresFor(histories)[index])
+            return; // if already clicked
         setHistories((prevHistories) => {
-            const squares = [...prevHistories[prevHistories.length - 1].squares];
+            const squares = [...squaresFor(prevHistories)];
             // update clicked square
             squares[index] = xIsNext ? 'X' : 'O';
             return [...prevHistories, { squares }];
@@ -24,10 +25,12 @@ export const Game = () => {
     };
     return (h("div", { className: "game" },
         h("div", { className: "game-board" },
-            h(Board, { squares: histories[histories.length - 1].squares, onClick: (index) => handleClick(index) })),
+            h(Board, { squares: squaresFor(histories), onClick: (index) => handleClick(index) })),
         h("div", { className: "game-info" },
-            h("div", null, status),
-            h("ol", null))));
+            h("div", null, winner
+                ? `Winner: ${winner}`
+                : `Next player: ${xIsNext ? 'X' : 'O'}`),
+            h(Moves, { histories: histories }))));
 };
 const calculateWinner = (squares) => {
     const lines = [
