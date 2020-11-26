@@ -1,9 +1,9 @@
-import { h, FunctionComponent } from 'preact';
+import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { squarable, historable } from './types';
 
-export const Game: FunctionComponent = () => {
+export const Game: FC = () => {
   const [histories, setHistories] = useState<historable[]>([
     { squares: Array<squarable>(9).fill(null) }, // generics
   ]);

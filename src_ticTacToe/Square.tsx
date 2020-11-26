@@ -1,7 +1,7 @@
-import { h, FunctionComponent } from 'preact';
+import { h, FunctionComponent as FC } from 'preact';
 import { squarable } from './types';
 
-export const Square: FunctionComponent<{
+export const Square: FC<{
   square: squarable;
   onClick: () => void;
 }> = ({ square, onClick }) => (

@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { Square } from './Square';
-export const Board = ({ squares, onClick, }) => {
+export const Board = ({ squares, onClick }) => {
     const status = 'Next player: X';
     return (h("div", null,
         h("div", { className: "status" }, status),
