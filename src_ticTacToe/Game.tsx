@@ -1,15 +1,19 @@
 import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
+import { useXIsNext } from './useXIsNext';
 import { squarable, historable } from './types';
 
 export const Game: FC = () => {
   const [histories, setHistories] = useState<historable[]>([
     { squares: Array<squarable>(9).fill(null) }, // generics
   ]);
-  const [xIsNext, setXIsNext] = useState<boolean>(true);
-
+  const [xIsNext, nextTurn] = useXIsNext();
+  
   const winner = calculateWinner(histories[histories.length - 1].squares);
+  const status = winner
+    ? `Winner: ${winner}`
+    : `Next player: ${xIsNext ? 'X' : 'O'}`;
 
   const handleClick = (index: number): void => {
     if (winner) return;
@@ -19,13 +23,9 @@ export const Game: FC = () => {
       squares[index] = xIsNext ? 'X' : 'O';
       return [...prevHistories, { squares }];
     });
-    setXIsNext((prev) => !prev);
+    nextTurn();
   };
-
-  const status = winner
-    ? `Winner: ${winner}`
-    : `Next player: ${xIsNext ? 'X' : 'O'}`;
-
+  
   return (
     <div className="game">
       <div className="game-board">
