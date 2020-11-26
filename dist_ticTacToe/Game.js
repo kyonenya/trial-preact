@@ -8,8 +8,9 @@ export const Game = () => {
         { squares: Array(9).fill(null) },
     ]);
     const [xIsNext, nextTurn] = useXIsNext();
-    const winner = calculateWinner(histories[histories.length - 1].squares);
+    /** get current squares */
     const squaresFor = (histories) => histories[histories.length - 1].squares;
+    const winner = calculateWinner(squaresFor(histories));
     const handleClick = (index) => {
         if (winner)
             return;
