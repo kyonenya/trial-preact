@@ -7,7 +7,10 @@ import { squarable, historable } from './types';
 
 export const Game: FC = () => {
   const [histories, setHistories] = useState<historable[]>([
-    { squares: Array<squarable>(9).fill(null) }, // generics
+    {
+      squares: Array<squarable>(9).fill(null),
+      location: { col: null, row: null },
+    }, // generics
   ]);
   const [xIsNext, nextTurn] = useXIsNext();
 //  const [stepNum, setStepNum] = useState<number>(0);
@@ -17,6 +20,9 @@ export const Game: FC = () => {
     histories.slice(-1)[0].squares;
   const winner = calculateWinner(squaresFor(histories));
   const handleClick = (index: number): void => {
+    const col = index % 3 + 1;
+    const row = Math.floor(index / 3) + 1;
+    
     if (winner) return;
     if (squaresFor(histories)[index]) return; // if already clicked
 
@@ -24,7 +30,10 @@ export const Game: FC = () => {
       const squares = [...squaresFor(prevHistories)];
       // update clicked square
       squares[index] = xIsNext ? 'X' : 'O';
-      return [...prevHistories, { squares }];
+      return [...prevHistories, {
+        squares,
+        location: { col, row },
+      }];
     });
     nextTurn();
   };

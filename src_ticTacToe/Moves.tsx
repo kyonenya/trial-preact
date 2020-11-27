@@ -11,7 +11,7 @@ export const Moves: FC<{
           <li>
             <button>
               {num !== 0
-                ? `Go to move # ${num}`
+                ? `#${num} col:${aHistory.location.col} row:${aHistory.location.row}`
                 : `Go to game start`}
             </button>
           </li>

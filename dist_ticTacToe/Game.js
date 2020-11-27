@@ -5,7 +5,10 @@ import { Moves } from './Moves';
 import { useXIsNext } from './useXIsNext';
 export const Game = () => {
     const [histories, setHistories] = useState([
-        { squares: Array(9).fill(null) },
+        {
+            squares: Array(9).fill(null),
+            location: { col: null, row: null },
+        },
     ]);
     const [xIsNext, nextTurn] = useXIsNext();
     //  const [stepNum, setStepNum] = useState<number>(0);
@@ -13,6 +16,8 @@ export const Game = () => {
     const squaresFor = (histories) => histories.slice(-1)[0].squares;
     const winner = calculateWinner(squaresFor(histories));
     const handleClick = (index) => {
+        const col = index % 3 + 1;
+        const row = Math.floor(index / 3) + 1;
         if (winner)
             return;
         if (squaresFor(histories)[index])
@@ -21,7 +26,10 @@ export const Game = () => {
             const squares = [...squaresFor(prevHistories)];
             // update clicked square
             squares[index] = xIsNext ? 'X' : 'O';
-            return [...prevHistories, { squares }];
+            return [...prevHistories, {
+                    squares,
+                    location: { col, row },
+                }];
         });
         nextTurn();
     };
