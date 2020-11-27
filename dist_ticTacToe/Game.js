@@ -8,6 +8,7 @@ export const Game = () => {
         { squares: Array(9).fill(null) },
     ]);
     const [xIsNext, nextTurn] = useXIsNext();
+    //  const [stepNum, setStepNum] = useState<number>(0);
     /** get current squares */
     const squaresFor = (histories) => histories.slice(-1)[0].squares;
     const winner = calculateWinner(squaresFor(histories));

@@ -10,6 +10,7 @@ export const Game: FC = () => {
     { squares: Array<squarable>(9).fill(null) }, // generics
   ]);
   const [xIsNext, nextTurn] = useXIsNext();
+//  const [stepNum, setStepNum] = useState<number>(0);
 
   /** get current squares */
   const squaresFor = (histories: historable[]): squarable[] =>
