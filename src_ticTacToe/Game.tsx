@@ -13,12 +13,13 @@ export const Game: FC = () => {
     }, // generics
   ]);
   const [xIsNext, nextTurn] = useXIsNext();
-//  const [stepNum, setStepNum] = useState<number>(0);
+  const [stepNum, setStepNum] = useState<number>(0);
 
   /** get current squares */
   const squaresFor = (histories: historable[]): squarable[] =>
     histories.slice(-1)[0].squares;
   const winner = calculateWinner(squaresFor(histories));
+  
   const handleClick = (index: number): void => {
     const col = index % 3 + 1;
     const row = Math.floor(index / 3) + 1;
@@ -35,14 +36,15 @@ export const Game: FC = () => {
         location: { col, row },
       }];
     });
+    setStepNum(prev => prev + 1);
     nextTurn();
   };
-
+  
   return (
     <div className="game">
       <div className="game-board">
         <Board
-          squares={squaresFor(histories)}
+          squares={histories[stepNum].squares}
           onClick={(index) => handleClick(index)}
         />
       </div>

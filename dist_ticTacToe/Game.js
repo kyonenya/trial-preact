@@ -11,7 +11,7 @@ export const Game = () => {
         },
     ]);
     const [xIsNext, nextTurn] = useXIsNext();
-    //  const [stepNum, setStepNum] = useState<number>(0);
+    const [stepNum, setStepNum] = useState(0);
     /** get current squares */
     const squaresFor = (histories) => histories.slice(-1)[0].squares;
     const winner = calculateWinner(squaresFor(histories));
@@ -31,11 +31,12 @@ export const Game = () => {
                     location: { col, row },
                 }];
         });
+        setStepNum(prev => prev + 1);
         nextTurn();
     };
     return (h("div", { className: "game" },
         h("div", { className: "game-board" },
-            h(Board, { squares: squaresFor(histories), onClick: (index) => handleClick(index) })),
+            h(Board, { squares: histories[stepNum].squares, onClick: (index) => handleClick(index) })),
         h("div", { className: "game-info" },
             h("div", null, winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`),
             h(Moves, { histories: histories }))));
