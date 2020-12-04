@@ -12,32 +12,36 @@ export const Game: FC = () => {
       location: { col: null, row: null },
     }, // generics
   ]);
-  const [xIsNext, nextTurn] = useXIsNext();
+  const [xIsNext, switchTurn, jumpTurn] = useXIsNext();
   const [stepNum, setStepNum] = useState<number>(0);
 
-  /** get current squares */
-  const squaresFor = (histories: historable[]): squarable[] =>
-    histories.slice(-1)[0].squares;
-  const winner = calculateWinner(squaresFor(histories));
+  const winner = calculateWinner(histories[stepNum].squares);
   
-  const handleClick = (index: number): void => {
-    const col = index % 3 + 1;
-    const row = Math.floor(index / 3) + 1;
-    
+  const handleClick = (index: number): void => {    
     if (winner) return;
-    if (squaresFor(histories)[index]) return; // if already clicked
+    if (histories[stepNum].squares[index]) return; // if already clicked
 
-    setHistories((prevHistories) => {
-      const squares = [...squaresFor(prevHistories)];
+    setHistories((histories) => {
+      // cut off old histories if jumped
+      const prevHistories = histories.slice(0, stepNum + 1);
+      const col = index % 3 + 1;
+      const row = Math.floor(index / 3) + 1;
+      const squares = [...prevHistories[stepNum].squares];
       // update clicked square
       squares[index] = xIsNext ? 'X' : 'O';
+      
       return [...prevHistories, {
         squares,
         location: { col, row },
       }];
     });
     setStepNum(prev => prev + 1);
-    nextTurn();
+    switchTurn();
+  };
+  
+  const jumpTo = (stepNum: number): void => {
+    setStepNum(() => stepNum);
+    jumpTurn(stepNum);
   };
   
   return (
@@ -52,7 +56,10 @@ export const Game: FC = () => {
         <div>
           {winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`}
         </div>
-        <Moves histories={histories} />
+        <Moves 
+          histories={histories}
+          jumpTo={jumpTo}
+        />
       </div>
     </div>
   );

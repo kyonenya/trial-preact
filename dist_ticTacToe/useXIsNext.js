@@ -1,8 +1,11 @@
 import { useState } from 'preact/hooks';
 export const useXIsNext = () => {
     const [xIsNext, setXIsNext] = useState(true);
-    const nextTurn = () => {
+    const switchTurn = () => {
         setXIsNext((prev) => !prev);
     };
-    return [xIsNext, nextTurn];
+    const jumpTurn = (stepNum) => {
+        setXIsNext(() => stepNum % 2 === 0);
+    };
+    return [xIsNext, switchTurn, jumpTurn];
 };

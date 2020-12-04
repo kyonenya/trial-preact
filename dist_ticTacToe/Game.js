@@ -10,20 +10,20 @@ export const Game = () => {
             location: { col: null, row: null },
         },
     ]);
-    const [xIsNext, nextTurn] = useXIsNext();
+    const [xIsNext, switchTurn, jumpTurn] = useXIsNext();
     const [stepNum, setStepNum] = useState(0);
-    /** get current squares */
-    const squaresFor = (histories) => histories.slice(-1)[0].squares;
-    const winner = calculateWinner(squaresFor(histories));
+    const winner = calculateWinner(histories[stepNum].squares);
     const handleClick = (index) => {
-        const col = index % 3 + 1;
-        const row = Math.floor(index / 3) + 1;
         if (winner)
             return;
-        if (squaresFor(histories)[index])
+        if (histories[stepNum].squares[index])
             return; // if already clicked
-        setHistories((prevHistories) => {
-            const squares = [...squaresFor(prevHistories)];
+        setHistories((histories) => {
+            // cut off old histories if jumped
+            const prevHistories = histories.slice(0, stepNum + 1);
+            const col = index % 3 + 1;
+            const row = Math.floor(index / 3) + 1;
+            const squares = [...prevHistories[stepNum].squares];
             // update clicked square
             squares[index] = xIsNext ? 'X' : 'O';
             return [...prevHistories, {
@@ -32,14 +32,18 @@ export const Game = () => {
                 }];
         });
         setStepNum(prev => prev + 1);
-        nextTurn();
+        switchTurn();
+    };
+    const jumpTo = (stepNum) => {
+        setStepNum(() => stepNum);
+        jumpTurn(stepNum);
     };
     return (h("div", { className: "game" },
         h("div", { className: "game-board" },
             h(Board, { squares: histories[stepNum].squares, onClick: (index) => handleClick(index) })),
         h("div", { className: "game-info" },
             h("div", null, winner ? `Winner: ${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`),
-            h(Moves, { histories: histories }))));
+            h(Moves, { histories: histories, jumpTo: jumpTo }))));
 };
 const calculateWinner = (squares) => {
     const lines = [
