@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
 import { useXIsNext } from './useXIsNext';
+import { useStepNum } from './useStepNum';
 import { squarable, historable } from './types';
 
 export const Game: FC = () => {
@@ -13,7 +14,7 @@ export const Game: FC = () => {
     }, // generics
   ]);
   const [xIsNext, switchTurn, jumpTurn] = useXIsNext();
-  const [stepNum, setStepNum] = useState<number>(0);
+  const [stepNum, nextStep, jumpStep] = useStepNum();
 
   const winner = calculateWinner(histories[stepNum].squares);
   
@@ -35,12 +36,12 @@ export const Game: FC = () => {
         location: { col, row },
       }];
     });
-    setStepNum(prev => prev + 1);
+    nextStep();
     switchTurn();
   };
   
   const jumpTo = (stepNum: number): void => {
-    setStepNum(() => stepNum);
+    jumpStep(stepNum);
     jumpTurn(stepNum);
   };
   

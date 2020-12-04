@@ -3,6 +3,7 @@ import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
 import { useXIsNext } from './useXIsNext';
+import { useStepNum } from './useStepNum';
 export const Game = () => {
     const [histories, setHistories] = useState([
         {
@@ -11,7 +12,7 @@ export const Game = () => {
         },
     ]);
     const [xIsNext, switchTurn, jumpTurn] = useXIsNext();
-    const [stepNum, setStepNum] = useState(0);
+    const [stepNum, nextStep, jumpStep] = useStepNum();
     const winner = calculateWinner(histories[stepNum].squares);
     const handleClick = (index) => {
         if (winner)
@@ -31,11 +32,11 @@ export const Game = () => {
                     location: { col, row },
                 }];
         });
-        setStepNum(prev => prev + 1);
+        nextStep();
         switchTurn();
     };
     const jumpTo = (stepNum) => {
-        setStepNum(() => stepNum);
+        jumpStep(stepNum);
         jumpTurn(stepNum);
     };
     return (h("div", { className: "game" },
