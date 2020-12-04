@@ -1,30 +1,28 @@
 import { h, FunctionComponent as FC } from 'preact';
-import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
 import { useHistories } from './useHistories';
 import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
-import { squarable, historable } from './types';
 
 export const Game: FC = () => {
   const [histories, updateHistories, winnerOf] = useHistories();
   const [xIsNext, switchTurn, jumpTurn] = useTurn();
   const [stepNum, nextStep, jumpStep] = useStepNum();
 
-  const handleClick = (index: number): void => {    
+  const handleClick = (index: number): void => {
     if (winnerOf(stepNum)) return;
     if (histories[stepNum].squares[index]) return; // if already clicked
     updateHistories(stepNum, index, xIsNext);
     nextStep();
     switchTurn();
   };
-  
+
   const jumpTo = (stepNum: number): void => {
     jumpStep(stepNum);
     jumpTurn(stepNum);
   };
-  
+
   return (
     <div className="game">
       <div className="game-board">
@@ -35,12 +33,11 @@ export const Game: FC = () => {
       </div>
       <div className="game-info">
         <div>
-          {winnerOf(stepNum) ? `Winner: ${winnerOf(stepNum)}` : `Next player: ${xIsNext ? 'X' : 'O'}`}
+          {winnerOf(stepNum)
+            ? `Winner: ${winnerOf(stepNum).toString()}`
+            : `Next player: ${xIsNext ? 'X' : 'O'}`}
         </div>
-        <Moves 
-          histories={histories}
-          jumpTo={jumpTo}
-        />
+        <Moves histories={histories} jumpTo={jumpTo} />
       </div>
     </div>
   );

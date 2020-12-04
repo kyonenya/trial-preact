@@ -1,5 +1,5 @@
 import { h, FunctionComponent as FC } from 'preact';
-import { squarable, historable } from './types';
+import { historable } from './types';
 
 export const Moves: FC<{
   histories: historable[];
@@ -12,13 +12,12 @@ export const Moves: FC<{
           <li>
             <button onClick={() => jumpTo(num)}>
               {num !== 0
-                ? `#${num} col:${aHistory.location.col} row:${aHistory.location.row}`
+                ? `#${num.toString()} col:${aHistory.location.col.toString()} row:${aHistory.location.row.toString()}`
                 : `Go to game start`}
             </button>
           </li>
         );
-      })
-      
-      }
-    </ol>);
+      })}
+    </ol>
+  );
 };
