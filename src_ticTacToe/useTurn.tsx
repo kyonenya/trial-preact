@@ -1,6 +1,6 @@
 import { useState } from 'preact/hooks';
 
-export const useXIsNext = (): [boolean, () => void, (stepNum: number) => void] => {
+export const useTurn = (): [boolean, () => void, (stepNum: number) => void] => {
   const [xIsNext, setXIsNext] = useState<boolean>(true);
   
   const switchTurn = (): void => {

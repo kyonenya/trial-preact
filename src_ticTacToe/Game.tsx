@@ -2,7 +2,7 @@ import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
-import { useXIsNext } from './useXIsNext';
+import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
 import { squarable, historable } from './types';
 
@@ -13,7 +13,7 @@ export const Game: FC = () => {
       location: { col: null, row: null },
     }, // generics
   ]);
-  const [xIsNext, switchTurn, jumpTurn] = useXIsNext();
+  const [xIsNext, switchTurn, jumpTurn] = useTurn();
   const [stepNum, nextStep, jumpStep] = useStepNum();
 
   const winner = calculateWinner(histories[stepNum].squares);

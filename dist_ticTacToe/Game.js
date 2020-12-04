@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
-import { useXIsNext } from './useXIsNext';
+import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
 export const Game = () => {
     const [histories, setHistories] = useState([
@@ -11,7 +11,7 @@ export const Game = () => {
             location: { col: null, row: null },
         },
     ]);
-    const [xIsNext, switchTurn, jumpTurn] = useXIsNext();
+    const [xIsNext, switchTurn, jumpTurn] = useTurn();
     const [stepNum, nextStep, jumpStep] = useStepNum();
     const winner = calculateWinner(histories[stepNum].squares);
     const handleClick = (index) => {
