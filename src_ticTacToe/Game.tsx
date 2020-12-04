@@ -2,17 +2,13 @@ import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
+import { useHistories } from './useHistories';
 import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
 import { squarable, historable } from './types';
 
 export const Game: FC = () => {
-  const [histories, setHistories] = useState<historable[]>([
-    {
-      squares: Array<squarable>(9).fill(null),
-      location: { col: null, row: null },
-    }, // generics
-  ]);
+  const [histories, updateHistories] = useHistories();
   const [xIsNext, switchTurn, jumpTurn] = useTurn();
   const [stepNum, nextStep, jumpStep] = useStepNum();
 
@@ -21,21 +17,7 @@ export const Game: FC = () => {
   const handleClick = (index: number): void => {    
     if (winner) return;
     if (histories[stepNum].squares[index]) return; // if already clicked
-
-    setHistories((histories) => {
-      // cut off old histories if jumped
-      const prevHistories = histories.slice(0, stepNum + 1);
-      const col = index % 3 + 1;
-      const row = Math.floor(index / 3) + 1;
-      const squares = [...prevHistories[stepNum].squares];
-      // update clicked square
-      squares[index] = xIsNext ? 'X' : 'O';
-      
-      return [...prevHistories, {
-        squares,
-        location: { col, row },
-      }];
-    });
+    updateHistories(stepNum, index, xIsNext);
     nextStep();
     switchTurn();
   };

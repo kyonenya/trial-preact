@@ -1,16 +1,11 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
+import { useHistories } from './useHistories';
 import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
 export const Game = () => {
-    const [histories, setHistories] = useState([
-        {
-            squares: Array(9).fill(null),
-            location: { col: null, row: null },
-        },
-    ]);
+    const [histories, updateHistories] = useHistories();
     const [xIsNext, switchTurn, jumpTurn] = useTurn();
     const [stepNum, nextStep, jumpStep] = useStepNum();
     const winner = calculateWinner(histories[stepNum].squares);
@@ -19,19 +14,7 @@ export const Game = () => {
             return;
         if (histories[stepNum].squares[index])
             return; // if already clicked
-        setHistories((histories) => {
-            // cut off old histories if jumped
-            const prevHistories = histories.slice(0, stepNum + 1);
-            const col = index % 3 + 1;
-            const row = Math.floor(index / 3) + 1;
-            const squares = [...prevHistories[stepNum].squares];
-            // update clicked square
-            squares[index] = xIsNext ? 'X' : 'O';
-            return [...prevHistories, {
-                    squares,
-                    location: { col, row },
-                }];
-        });
+        updateHistories(stepNum, index, xIsNext);
         nextStep();
         switchTurn();
     };
