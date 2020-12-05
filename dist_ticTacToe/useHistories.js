@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 export const useHistories = () => {
     const [histories, setHistories] = useState([
         {
-            squares: Array(9).fill(null),
+            squares: Array(9).fill(''),
             location: { col: null, row: null },
         },
     ]);

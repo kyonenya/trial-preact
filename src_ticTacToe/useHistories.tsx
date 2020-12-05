@@ -8,7 +8,7 @@ export const useHistories = (): [
 ] => {
   const [histories, setHistories] = useState<historable[]>([
     {
-      squares: Array<squarable>(9).fill(null), // generics
+      squares: Array<squarable>(9).fill(''), // generics
       location: { col: null, row: null },
     },
   ]);

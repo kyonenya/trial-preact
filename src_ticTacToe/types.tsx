@@ -1,4 +1,4 @@
-export type squarable = 'X' | 'O' | null;
+export type squarable = 'X' | 'O' | '';
 
 export type historable = {
   squares: squarable[];
