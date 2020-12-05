@@ -5,6 +5,7 @@ import { useHistories } from './useHistories';
 import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
 export const Game = () => {
+    var _a;
     const [histories, updateHistories, winnerOf] = useHistories();
     const [xIsNext, switchTurn, jumpTurn] = useTurn();
     const [stepNum, nextStep, jumpStep] = useStepNum();
@@ -25,6 +26,8 @@ export const Game = () => {
         h("div", { className: "game-board" },
             h(Board, { squares: histories[stepNum].squares, onClick: (index) => handleClick(index) })),
         h("div", { className: "game-info" },
-            h("div", null, winnerOf(stepNum) ? `Winner: ${winnerOf(stepNum)}` : `Next player: ${xIsNext ? 'X' : 'O'}`),
+            h("div", null, winnerOf(stepNum)
+                ? `Winner: ${(_a = winnerOf(stepNum)) === null || _a === void 0 ? void 0 : _a.toString()}`
+                : `Next player: ${xIsNext ? 'X' : 'O'}`),
             h(Moves, { histories: histories, jumpTo: jumpTo }))));
 };

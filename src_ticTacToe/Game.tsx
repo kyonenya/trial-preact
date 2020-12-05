@@ -34,7 +34,7 @@ export const Game: FC = () => {
       <div className="game-info">
         <div>
           {winnerOf(stepNum)
-            ? `Winner: ${winnerOf(stepNum).toString()}`
+            ? `Winner: ${winnerOf(stepNum)?.toString()}`
             : `Next player: ${xIsNext ? 'X' : 'O'}`}
         </div>
         <Moves histories={histories} jumpTo={jumpTo} />

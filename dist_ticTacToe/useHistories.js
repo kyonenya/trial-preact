@@ -13,13 +13,16 @@ export const useHistories = () => {
             const squares = [...prevHistories[stepNum].squares];
             // update clicked square
             squares[index] = xIsNext ? 'X' : 'O';
-            return [...prevHistories, {
+            return [
+                ...prevHistories,
+                {
                     squares,
                     location: {
-                        col: index % 3 + 1,
+                        col: (index % 3) + 1,
                         row: Math.floor(index / 3) + 1,
                     },
-                }];
+                },
+            ];
         });
     };
     const winnerOf = (stepNum) => calculateWinner(histories[stepNum].squares);
