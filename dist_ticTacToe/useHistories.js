@@ -3,7 +3,7 @@ export const useHistories = () => {
     const [histories, setHistories] = useState([
         {
             squares: Array(9).fill(''),
-            location: { col: null, row: null },
+            location: { col: 0, row: 0 },
         },
     ]);
     const updateHistories = (stepNum, index, xIsNext) => {

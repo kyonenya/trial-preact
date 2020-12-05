@@ -12,7 +12,7 @@ export const Moves: FC<{
           <li>
             <button onClick={() => jumpTo(num)}>
               {num !== 0
-                ? `#${num.toString()} col:${aHistory.location.col?.toString()} row:${aHistory.location.row?.toString()}`
+                ? `#${num.toString()} col:${aHistory.location.col.toString()} row:${aHistory.location.row.toString()}`
                 : `Go to game start`}
             </button>
           </li>
