@@ -13,7 +13,7 @@ export const Game: FC = () => {
   const handleClick = (index: number): void => {
     if (getWinner(stepNum)) return;
     if (histories[stepNum].squares[index]) return; // if already clicked
-    updateHistories(stepNum, index, isXTurn);
+    updateHistories(index, stepNum, isXTurn);
     nextStep();
     switchTurn();
   };
