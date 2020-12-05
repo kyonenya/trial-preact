@@ -16,7 +16,7 @@ export const Board: FC<{
             return (
               <Square
                 square={squares[index]}
-                isWinIndex={winIndexes ? winIndexes?.indexOf(index) !== -1 : null}
+                isWinIndex={winIndexes ? winIndexes.indexOf(index) !== -1 : false}
                 onClick={() => onClick(index)}
                 key={index}
               />
