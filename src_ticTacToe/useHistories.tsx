@@ -4,7 +4,7 @@ import { squarable, historable } from './types';
 export const useHistories = (): [
   histories: historable[],
   updateHistories: (stepNum: number, index: number, xIsNext: boolean) => void,
-  winnerOf: (stepNum: number) => squarable
+  winnerOf: (stepNum: number) => { winner: squarable, indexes: number[] } | null
 ] => {
   const [histories, setHistories] = useState<historable[]>([
     {
@@ -38,13 +38,16 @@ export const useHistories = (): [
     });
   };
 
-  const winnerOf = (stepNum: number) =>
+  const getWinner = (stepNum: number) =>
     calculateWinner(histories[stepNum].squares);
 
-  return [histories, updateHistories, winnerOf];
+  return [histories, updateHistories, getWinner];
 };
 
-const calculateWinner = (squares: squarable[]): squarable => {
+const calculateWinner = (squares: squarable[]): {
+  winner: squarable,
+  indexes: number[],
+} | null => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -58,7 +61,10 @@ const calculateWinner = (squares: squarable[]): squarable => {
   for (let i = 0; i < lines.length; i += 1) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {
+        winner: squares[a],
+        indexes: lines[i],
+      };
     }
   }
   return null;

@@ -6,12 +6,12 @@ import { useTurn } from './useTurn';
 import { useStepNum } from './useStepNum';
 
 export const Game: FC = () => {
-  const [histories, updateHistories, winnerOf] = useHistories();
+  const [histories, updateHistories, getWinner] = useHistories();
   const [xIsNext, switchTurn, jumpTurn] = useTurn();
   const [stepNum, nextStep, jumpStep] = useStepNum();
 
   const handleClick = (index: number): void => {
-    if (winnerOf(stepNum)) return;
+    if (getWinner(stepNum)) return;
     if (histories[stepNum].squares[index]) return; // if already clicked
     updateHistories(stepNum, index, xIsNext);
     nextStep();
@@ -33,8 +33,8 @@ export const Game: FC = () => {
       </div>
       <div className="game-info">
         <div>
-          {winnerOf(stepNum)
-            ? `Winner: ${winnerOf(stepNum)?.toString()}`
+          {getWinner(stepNum)
+            ? `Winner: ${getWinner(stepNum)?.winner?.toString()}`
             : `Next player: ${xIsNext ? 'X' : 'O'}`}
         </div>
         <Moves histories={histories} jumpTo={jumpTo} />

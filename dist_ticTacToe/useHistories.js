@@ -25,8 +25,8 @@ export const useHistories = () => {
             ];
         });
     };
-    const winnerOf = (stepNum) => calculateWinner(histories[stepNum].squares);
-    return [histories, updateHistories, winnerOf];
+    const getWinner = (stepNum) => calculateWinner(histories[stepNum].squares);
+    return [histories, updateHistories, getWinner];
 };
 const calculateWinner = (squares) => {
     const lines = [
@@ -42,7 +42,10 @@ const calculateWinner = (squares) => {
     for (let i = 0; i < lines.length; i += 1) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
+            return {
+                winner: squares[a],
+                indexes: lines[i],
+            };
         }
     }
     return null;
