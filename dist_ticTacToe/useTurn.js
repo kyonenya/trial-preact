@@ -1,11 +1,11 @@
 import { useState } from 'preact/hooks';
 export const useTurn = () => {
-    const [xIsNext, setXIsNext] = useState(true);
+    const [isXTurn, setTurn] = useState(true);
     const switchTurn = () => {
-        setXIsNext((prev) => !prev);
+        setTurn((prev) => !prev);
     };
     const jumpTurn = (stepNum) => {
-        setXIsNext(() => stepNum % 2 === 0);
+        setTurn(() => stepNum % 2 === 0);
     };
-    return [xIsNext, switchTurn, jumpTurn];
+    return [isXTurn, switchTurn, jumpTurn];
 };

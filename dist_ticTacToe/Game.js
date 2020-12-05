@@ -7,14 +7,14 @@ import { useStepNum } from './useStepNum';
 export const Game = () => {
     var _a, _b;
     const [histories, updateHistories, getWinner] = useHistories();
-    const [xIsNext, switchTurn, jumpTurn] = useTurn();
+    const [isXTurn, switchTurn, jumpTurn] = useTurn();
     const [stepNum, nextStep, jumpStep] = useStepNum();
     const handleClick = (index) => {
         if (getWinner(stepNum))
             return;
         if (histories[stepNum].squares[index])
             return; // if already clicked
-        updateHistories(stepNum, index, xIsNext);
+        updateHistories(stepNum, index, isXTurn);
         nextStep();
         switchTurn();
     };
@@ -28,6 +28,6 @@ export const Game = () => {
         h("div", { className: "game-info" },
             h("div", null, getWinner(stepNum)
                 ? `Winner: ${(_b = getWinner(stepNum)) === null || _b === void 0 ? void 0 : _b.winner.toString()}`
-                : `Next player: ${xIsNext ? 'X' : 'O'}`),
+                : `Next player: ${isXTurn ? 'X' : 'O'}`),
             h(Moves, { histories: histories, jumpTo: jumpTo }))));
 };

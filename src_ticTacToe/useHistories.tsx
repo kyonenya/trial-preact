@@ -3,7 +3,7 @@ import { squarable, historable } from './types';
 
 export const useHistories = (): [
   histories: historable[],
-  updateHistories: (stepNum: number, index: number, xIsNext: boolean) => void,
+  updateHistories: (stepNum: number, index: number, isXTurn: boolean) => void,
   winnerOf: (stepNum: number) => { winner: squarable, indexes: number[] } | null,
 ] => {
   const [histories, setHistories] = useState<historable[]>([
@@ -16,14 +16,14 @@ export const useHistories = (): [
   const updateHistories = (
     stepNum: number,
     index: number,
-    xIsNext: boolean
+    isXTurn: boolean
   ): void => {
     setHistories((histories) => {
       // cut off old histories if jumped
       const prevHistories = histories.slice(0, stepNum + 1);
       const squares = [...prevHistories[stepNum].squares];
       // update clicked square
-      squares[index] = xIsNext ? 'X' : 'O';
+      squares[index] = isXTurn ? 'X' : 'O';
 
       return [
         ...prevHistories,

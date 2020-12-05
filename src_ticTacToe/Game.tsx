@@ -7,13 +7,13 @@ import { useStepNum } from './useStepNum';
 
 export const Game: FC = () => {
   const [histories, updateHistories, getWinner] = useHistories();
-  const [xIsNext, switchTurn, jumpTurn] = useTurn();
+  const [isXTurn, switchTurn, jumpTurn] = useTurn();
   const [stepNum, nextStep, jumpStep] = useStepNum();
 
   const handleClick = (index: number): void => {
     if (getWinner(stepNum)) return;
     if (histories[stepNum].squares[index]) return; // if already clicked
-    updateHistories(stepNum, index, xIsNext);
+    updateHistories(stepNum, index, isXTurn);
     nextStep();
     switchTurn();
   };
@@ -36,7 +36,7 @@ export const Game: FC = () => {
         <div>
           {getWinner(stepNum)
             ? `Winner: ${getWinner(stepNum)?.winner.toString()}`
-            : `Next player: ${xIsNext ? 'X' : 'O'}`}
+            : `Next player: ${isXTurn ? 'X' : 'O'}`}
         </div>
         <Moves histories={histories} jumpTo={jumpTo} />
       </div>
