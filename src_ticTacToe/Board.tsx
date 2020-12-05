@@ -4,8 +4,9 @@ import { squarable } from './types';
 
 export const Board: FC<{
   squares: squarable[];
+  winIndexes: number[] | undefined;
   onClick: (index: number) => void;
-}> = ({ squares, onClick }) => {
+}> = ({ squares, winIndexes, onClick }) => {
   return (
     <div>
       {[...Array(3).keys()].map((i) => (
@@ -15,6 +16,7 @@ export const Board: FC<{
             return (
               <Square
                 square={squares[index]}
+                isWinIndex={winIndexes ? winIndexes?.indexOf(index) !== -1 : null}
                 onClick={() => onClick(index)}
                 key={index}
               />

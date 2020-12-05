@@ -3,9 +3,13 @@ import { squarable } from './types';
 
 export const Square: FC<{
   square: squarable;
+  isWinIndex: boolean;
   onClick: () => void;
-}> = ({ square, onClick }) => (
-  <button className="square" type="button" onClick={() => onClick()}>
+}> = ({ square, isWinIndex, onClick }) => (
+  <button type="button"
+    className={!isWinIndex ? 'square' : 'square-winIndex'}
+    onClick={() => onClick()}
+  >
     {square}
   </button>
 );

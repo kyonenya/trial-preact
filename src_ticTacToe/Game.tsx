@@ -28,6 +28,7 @@ export const Game: FC = () => {
       <div className="game-board">
         <Board
           squares={histories[stepNum].squares}
+          winIndexes={getWinner(stepNum)?.indexes}
           onClick={(index) => handleClick(index)}
         />
       </div>
