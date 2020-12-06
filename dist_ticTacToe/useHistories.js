@@ -6,7 +6,7 @@ export const useHistories = () => {
             location: { col: 0, row: 0 },
         },
     ]);
-    const updateHistories = (stepNum, index, isXTurn) => {
+    const updateHistories = (index, stepNum, isXTurn) => {
         setHistories((histories) => {
             // cut off old histories if jumped
             const prevHistories = histories.slice(0, stepNum + 1);

@@ -6,7 +6,8 @@ export const Square: FC<{
   isWinIndex: boolean;
   onClick: () => void;
 }> = ({ square, isWinIndex, onClick }) => (
-  <button type="button"
+  <button
+    type="button"
     className={!isWinIndex ? 'square' : 'square-winIndex'}
     onClick={() => onClick()}
   >

@@ -1,4 +1,5 @@
 import { h, FunctionComponent as FC } from 'preact';
+import { useEffect } from 'preact/hooks';
 import { Board } from './Board';
 import { Moves } from './Moves';
 import { useHistories } from './useHistories';
@@ -10,6 +11,12 @@ export const Game: FC = () => {
   const [isXTurn, switchTurn, jumpTurn] = useTurn();
   const [stepNum, nextStep, jumpStep] = useStepNum();
 
+  useEffect(() => {
+    document.title = getWinner(stepNum)
+      ? `Winner: ${getWinner(stepNum)?.winner.toString()}`
+      : `Next player: ${isXTurn ? 'X' : 'O'}`;
+  });
+  
   const handleClick = (index: number): void => {
     if (getWinner(stepNum)) return;
     if (histories[stepNum].squares[index]) return; // if already clicked

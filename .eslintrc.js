@@ -41,6 +41,7 @@ module.exports = {
   ],
   globals: {},
   rules: {
+    '@typescript-eslint/restrict-template-expressions': 0,
     /** disable while development */
 //    '@typescript-eslint/no-unused-vars': 0,
     /** overwrite airbnb */
