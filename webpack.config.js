@@ -3,7 +3,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src_ticTacToe/index.tsx',
+  entry: './src_bookAPI/index.tsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new ESLintPlugin({
-      files: './src_ticTacToe/**',
+      files: './src_bookAPI/**',
 //      fix: true,
     }),
   ],
