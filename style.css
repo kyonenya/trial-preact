@@ -1,48 +1,37 @@
 body {
-  width: 540;
-  margin-right: auto;
-  margin-left: auto;
-  /* background-color: black; */
-  /* color: white; */
+  width: 500;
+  margin: 0 auto;
   font-size: 10px;
   font-family: sans-serif;
 }
 
 .App {
   text-align: center;
+  margin: 0 auto;
   width: 500;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 640px;
-  /* background-color: lightgray; */
-  /* color: white; */
 }
 
 .nav {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: row; /* 横並び */
+  justify-content: space-between; /* 両脇 */
+  align-items: center; /* 縦中央 */
   background-color: lightgray;
-  /* border-bottom: solid 2px rgb(22, 164, 207); */
 }
 
 h1 {
-  margin: 5px;
-  padding: 4px;
-  width: auto;
   height: 2rem;
   font-size: 1.1rem;
   font-weight: normal;
 }
 
 .button-like {
-  margin: 3px;
   padding: 3px;
   width: 70px;
   height: 2rem;
   text-align: center;
   font-size: 1rem;
-  background-color: darkgray;
+  background-color: silver;
   cursor: pointer;
 }
 
