@@ -1,6 +1,4 @@
 import { h } from 'preact';
-// import React from "react";
-import "./App.css";
 const dummyBooks = [
     {
         id: 1,
@@ -21,7 +19,7 @@ const dummyBooks = [
         memo: ""
     }
 ];
-const App = () => {
+export const App = () => {
     return (h("div", { className: "App" },
         h("section", { className: "nav" },
             h("h1", null, "\u8AAD\u307F\u305F\u3044\u672C\u30EA\u30B9\u30C8"),
@@ -29,4 +27,3 @@ const App = () => {
         h("section", { className: "main" },
             h("h1", null, "\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB\u3092\u59CB\u3081\u307E\u3057\u3087\u3046"))));
 };
-export default App;

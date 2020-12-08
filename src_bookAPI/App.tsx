@@ -1,6 +1,5 @@
 import { h, FunctionComponent as FC } from 'preact';
-// import "./App.css";
-import { BookToRead } from "./BookToRead";
+import { BookToRead } from "./types";
 
 const dummyBooks: BookToRead[] = [
   {
@@ -23,7 +22,7 @@ const dummyBooks: BookToRead[] = [
   }
 ];
 
-const App = () => {
+export const App = () => {
   return (
     <div className="App">
       <section className="nav">
@@ -36,5 +35,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;

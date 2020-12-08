@@ -4,3 +4,9 @@ export type BookToRead = {
   authors: string;
   memo: string;
 };
+
+export type BookDescription = {
+  title: string;
+  authors: string;
+  thumbnail: string;
+};
