@@ -7,6 +7,8 @@
     "src/**/*.tsx",
     "src_ticTacToe/**/*.ts",
     "src_ticTacToe/**/*.tsx",
+    "src_bookAPI/**/*.tsx",
+    "src_bookAPI/**/*.tsx",
   ],
   "exclude": [
     "node_modules"

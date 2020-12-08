@@ -16,7 +16,7 @@ export const Game: FC = () => {
       ? `Winner: ${getWinner(stepNum)?.winner.toString()}`
       : `Next player: ${isXTurn ? 'X' : 'O'}`;
   });
-  
+
   const handleClick = (index: number): void => {
     if (getWinner(stepNum)) return;
     if (histories[stepNum].squares[index]) return; // if already clicked
