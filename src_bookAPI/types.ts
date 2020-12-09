@@ -1,11 +1,11 @@
-export type BookToRead = {
+export type bookable = {
   id: number;
   title: string;
   authors: string;
   memo: string;
 };
 
-export type BookDescription = {
+export type descriptable = {
   title: string;
   authors: string;
   thumbnail: string;

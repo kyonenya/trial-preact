@@ -1,7 +1,7 @@
 import { h, FunctionComponent as FC } from 'preact';
-import { BookToRead } from './types';
+import { bookable } from './types';
 
-export const BookRow: FC<{ book: BookToRead }> = ({ book }) => {
+export const Row: FC<{ book: bookable }> = ({ book }) => {
   const { title, authors, memo } = book;
   
   return (

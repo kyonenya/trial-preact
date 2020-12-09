@@ -1,8 +1,8 @@
 import { h, FunctionComponent as FC } from 'preact';
-import { BookRow } from './BookRow';
-import { BookToRead } from './types';
+import { Row } from './Row';
+import { bookable } from './types';
 
-const dummyBooks: BookToRead[] = [
+const dummyBooks: bookable[] = [
   {
     id: 1,
     title: 'はじめてのReact',
@@ -33,7 +33,7 @@ export const App = () => {
       <main className="main">
         {dummyBooks.map((book) => {
           return (
-            <BookRow 
+            <Row
               book={book}
               key={book.id}
 //              onMemoChange={(id, memo) => {}}
