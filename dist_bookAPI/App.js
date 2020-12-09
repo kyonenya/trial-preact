@@ -1,23 +1,24 @@
 import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { Row } from './Row';
+import { SearchDialog } from './SearchDialog';
 const dummyBooks = [
     {
         id: 1,
         title: 'はじめてのReact',
-        authors: 'ダミー',
+        authors: '山田太郎',
         memo: 'メモ',
     },
     {
         id: 2,
         title: 'React Hooks入門',
-        authors: 'ダミー',
+        authors: '山田次郎',
         memo: 'メモ',
     },
     {
         id: 3,
         title: '実践Reactアプリケーション開発',
-        authors: 'ダミー',
+        authors: '山田三郎',
         memo: 'メモ',
     },
 ];
@@ -33,8 +34,7 @@ export const App = () => {
             h("h1", null, "\u8AAD\u307F\u305F\u3044\u672C\u30EA\u30B9\u30C8"),
             h("div", { className: "button-like" }, "[Add]")),
         h("main", { className: "main" }, books.map((book) => {
-            return (h(Row, { book: book, key: book.id, 
-                //              onMemoChange={(id, memo) => {}}
-                onDelete: () => handleDelete(book.id) }));
-        }))));
+            return (h(Row, { book: book, key: book.id, onDelete: () => handleDelete(book.id) }));
+        })),
+        h(SearchDialog, null)));
 };

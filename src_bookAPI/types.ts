@@ -5,7 +5,7 @@ export type bookable = {
   memo: string;
 };
 
-export type descriptable = {
+export type resultable = {
   title: string;
   authors: string;
   thumbnail: string;

@@ -1,25 +1,26 @@
 import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Row } from './Row';
+import { SearchDialog } from './SearchDialog';
 import { bookable } from './types';
 
 const dummyBooks: bookable[] = [
   {
     id: 1,
     title: 'はじめてのReact',
-    authors: 'ダミー',
+    authors: '山田太郎',
     memo: 'メモ',
   },
   {
     id: 2,
     title: 'React Hooks入門',
-    authors: 'ダミー',
+    authors: '山田次郎',
     memo: 'メモ',
   },
   {
     id: 3,
     title: '実践Reactアプリケーション開発',
-    authors: 'ダミー',
+    authors: '山田三郎',
     memo: 'メモ',
   },
 ];
@@ -45,12 +46,12 @@ export const App = () => {
             <Row
               book={book}
               key={book.id}
-//              onMemoChange={(id, memo) => {}}
               onDelete={() => handleDelete(book.id)}
             />
           );
         })}
       </main>
+      <SearchDialog />
     </div>
   );
 };
