@@ -15,11 +15,13 @@ export const Row: FC<{
       <div className="authors">
         {authors}
       </div>
+      {/*
       <input className="memo"
         type="text"
         value={memo}
 //        onChange={handleMemoChange}
       />
+      */}
       <div className="delete-row" 
         onClick={onDelete}
       >
