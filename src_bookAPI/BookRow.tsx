@@ -20,7 +20,7 @@ export const BookRow: FC<{ book: BookToRead }> = ({ book }) => {
       <div className="delete-row" 
 //        onClick={handleDeleteClick}
       >
-        削除
+        [×]
       </div>
     </div>
   );

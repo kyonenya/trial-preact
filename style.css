@@ -1,8 +1,12 @@
+html {
+  font-size: 12px;
+  font-family: sans-serif;
+}
+
 body {
   width: 500;
   margin: 0 auto;
-  font-size: 10px;
-  font-family: sans-serif;
+  /* font-size: 10px; */
 }
 
 .App {
@@ -16,22 +20,21 @@ body {
   flex-direction: row; /* 横並び */
   justify-content: space-between; /* 両脇 */
   align-items: center; /* 縦中央 */
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 
 h1 {
+  margin-left: 1rem;
   height: 2rem;
   font-size: 1.1rem;
   font-weight: normal;
 }
 
 .button-like {
-  padding: 3px;
-  width: 70px;
+  margin-right: 1rem;;
   height: 2rem;
   text-align: center;
   font-size: 1rem;
-  background-color: silver;
   cursor: pointer;
 }
 
@@ -135,13 +138,12 @@ h1 {
 }
 
 .book-row {
-  background-color: #181a1f;
   display: flex;
   flex-direction: row;
 }
 
 .book-row:nth-child(even) {
-  background-color: #292c35;
+  background-color: whitesmoke;
 }
 
 .book-row div {
@@ -163,32 +165,18 @@ h1 {
 }
 
 .book-row input {
-  width: 225px;
-  padding: 8px 2px 0;
-  color: aquamarine;
-  background-color: #181a1f;
-  border: none;
+  width: 80px;
   outline: 0;
-  border-bottom: 1px solid #fff;
+  border: 1px solid whitesmoke;
 }
 
 .book-row:nth-child(even) input {
-  background-color: #292c35;
-}
-
-.book-row input:focus {
-  border-bottom: 3px solid #fff;
-  font-size: 1.1rem;
+  background-color: whitesmoke;
 }
 
 .book-row .delete-row {
-  margin: 5px;
-  padding: 4px;
-  width: 20px;
-  height: 1.6rem;
   text-align: center;
-  font-size: 1.2rem;
-  background-color: rgb(230, 163, 20);
+  font-size: 0.8rem;
   cursor: pointer;
 }
   
