@@ -1,4 +1,5 @@
 import { h, FunctionComponent as FC } from 'preact';
+import { useState } from 'preact/hooks';
 import { Row } from './Row';
 import { bookable } from './types';
 
@@ -19,11 +20,19 @@ const dummyBooks: bookable[] = [
     id: 3,
     title: '実践Reactアプリケーション開発',
     authors: 'ダミー',
-  memo: 'メモ',
+    memo: 'メモ',
   },
 ];
 
 export const App = () => {
+  const [books, setBooks] = useState<bookable[]>(dummyBooks);
+  
+  const handleDelete = (id: number) => {
+    setBooks((prevBooks) => {
+      return prevBooks.filter((book) => book.id !== id);
+    });
+  };
+  
   return (
     <div className="App">
       <nav className="nav">
@@ -31,13 +40,13 @@ export const App = () => {
         <div className="button-like">[Add]</div>
       </nav>
       <main className="main">
-        {dummyBooks.map((book) => {
+        {books.map((book) => {
           return (
             <Row
               book={book}
               key={book.id}
 //              onMemoChange={(id, memo) => {}}
-//              onDelete={(id) => {}}
+              onDelete={() => handleDelete(book.id)}
             />
           );
         })}

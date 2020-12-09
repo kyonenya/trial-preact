@@ -1,7 +1,10 @@
 import { h, FunctionComponent as FC } from 'preact';
 import { bookable } from './types';
 
-export const Row: FC<{ book: bookable }> = ({ book }) => {
+export const Row: FC<{
+  book: bookable,
+  onDelete: () => void 
+}> = ({ book, onDelete }) => {
   const { title, authors, memo } = book;
   
   return (
@@ -18,7 +21,7 @@ export const Row: FC<{ book: bookable }> = ({ book }) => {
 //        onChange={handleMemoChange}
       />
       <div className="delete-row" 
-//        onClick={handleDeleteClick}
+        onClick={onDelete}
       >
         [×]
       </div>
