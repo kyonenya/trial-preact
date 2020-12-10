@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { SearchItem } from './SearchItem';
 const dummyResults = [
     {
@@ -19,7 +19,7 @@ const dummyResults = [
     },
 ];
 function buildSearchUrl(title, author, maxResults) {
-    let url = "https://www.googleapis.com/books/v1/volumes?q=";
+    const url = 'https://www.googleapis.com/books/v1/volumes?q=';
     const conditions = [];
     if (title) {
         conditions.push(`intitle:${title}`);
@@ -29,20 +29,28 @@ function buildSearchUrl(title, author, maxResults) {
     }
     return url + conditions.join('+') + `&maxResults=${maxResults}`;
 }
-function extractBooks(json) {
+function extractResults(json) {
     const items = json.items;
     return items.map((item) => {
         const volumeInfo = item.volumeInfo;
         return {
             title: volumeInfo.title,
-            authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : "",
-            thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : "",
+            authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : '',
+            thumbnail: volumeInfo.imageLinks
+                ? volumeInfo.imageLinks.smallThumbnail
+                : '',
         };
     });
 }
 export const SearchDialog = ({ onBookAdd, isSearching }) => {
     const [results, setResults] = useState(dummyResults);
     const [title, setTitle] = useState('');
+    useEffect(() => {
+        fetch(buildSearchUrl(title, '', 4))
+            .then((res) => res.json())
+            .then((json) => extractResults(json))
+            .then((results) => setResults(results));
+    });
     const handleTitleChange = (e) => {
         const inputElement = e.target;
         setTitle(inputElement.value);
@@ -53,8 +61,7 @@ export const SearchDialog = ({ onBookAdd, isSearching }) => {
             return alert('検索ワードを入力して下さい');
         // TODO
     };
-    const handleBookAdd = () => {
-    };
+    const handleBookAdd = () => { };
     return (h("div", { className: "dialog", style: { display: isSearching ? 'block' : 'none' } },
         h("div", { className: "operation" },
             h("div", { className: "conditions" },
@@ -62,6 +69,6 @@ export const SearchDialog = ({ onBookAdd, isSearching }) => {
                 h("input", { type: "text", placeholder: "\u8457\u8005\u540D\u3067\u691C\u7D22" })),
             h("div", { className: "button-like", onClick: handleSearchClick }, "\u691C\u7D22")),
         h("div", { className: "search-results" }, results.map((result, i) => {
-            return (h(SearchItem, { result: result, onBookAdd: onBookAdd, key: i }));
+            return h(SearchItem, { result: result, onBookAdd: onBookAdd, key: i });
         }))));
 };

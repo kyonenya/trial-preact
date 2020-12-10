@@ -1,5 +1,5 @@
 import { h, FunctionComponent as FC } from 'preact';
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { JSXInternal } from 'preact/src/jsx';
 import { SearchItem } from './SearchItem';
 import { resultable } from './types';
@@ -38,7 +38,7 @@ function buildSearchUrl(
   return url + conditions.join('+') + `&maxResults=${maxResults}`;
 }
 
-function extractBooks(json: any): resultable[] {
+function extractResults(json: any): resultable[] {
   const items: any[] = json.items;
   return items.map((item: any) => {
     const volumeInfo: any = item.volumeInfo;
@@ -59,6 +59,13 @@ export const SearchDialog: FC<{
   const [results, setResults] = useState<resultable[]>(dummyResults);
   const [title, setTitle] = useState<string>('');
 
+  useEffect(() => {
+    fetch(buildSearchUrl(title, '', 4))
+      .then((res) => res.json())
+      .then((json) => extractResults(json))
+      .then((results) => setResults(results));
+  });
+  
   const handleTitleChange = (
     e: JSXInternal.TargetedEvent<HTMLInputElement>
   ) => {
