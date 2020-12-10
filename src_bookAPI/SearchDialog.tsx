@@ -24,7 +24,8 @@ const dummyResults: resultable[] = [
 
 export const SearchDialog: FC<{
   onBookAdd: () => void,
-}> = ({ onBookAdd }) => {
+  isSearching: boolean,
+}> = ({ onBookAdd, isSearching }) => {
   const [results, setResults] = useState<resultable[]>(dummyResults);
   const [title, setTitle] = useState<string>('');
   
@@ -44,7 +45,9 @@ export const SearchDialog: FC<{
   };
 
   return (
-    <div className="dialog">
+    <div className="dialog"
+      style={{ display: isSearching ? 'block' : 'none' }}
+    >
       <div className="operation">
         <div className="conditions">
           <input type="text"

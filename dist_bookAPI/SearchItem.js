@@ -5,6 +5,6 @@ export const SearchItem = ({ result, onBookAdd }) => {
         h("h2", { title: title }, title),
         h("div", { className: "authors", title: authors }, authors),
         thumbnail ? h("img", { src: thumbnail, alt: "" }) : null,
-        h("div", { className: "add-book" },
+        h("div", { className: "add-book", onClick: onBookAdd },
             h("span", null, "+"))));
 };

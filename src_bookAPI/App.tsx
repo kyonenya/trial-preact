@@ -27,6 +27,7 @@ const dummyBooks: bookable[] = [
 
 export const App = () => {
   const [books, setBooks] = useState<bookable[]>(dummyBooks);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
   
   const handleDelete = (id: number) => {
     setBooks((prevBooks) => {
@@ -34,11 +35,20 @@ export const App = () => {
     });
   };
   
+  const handleAddClick = () => {
+    setIsSearching((prev) => !prev);
+//    alert(isSearching);
+  };
+  
   return (
     <div className="App">
       <nav className="nav">
         <h1>読みたい本リスト</h1>
-        <div className="button-like">[Add]</div>
+        <div className="button-like"
+          onClick={handleAddClick}
+        >
+          [Add]
+        </div>
       </nav>
       <main className="main">
         {books.map((book) => {
@@ -51,7 +61,8 @@ export const App = () => {
           );
         })}
       </main>
-      <SearchDialog 
+      <SearchDialog
+        isSearching={isSearching}
         onBookAdd={() => alert('added')}
       />
     </div>

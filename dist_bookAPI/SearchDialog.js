@@ -18,7 +18,7 @@ const dummyResults = [
         thumbnail: '',
     },
 ];
-export const SearchDialog = ({ onBookAdd }) => {
+export const SearchDialog = ({ onBookAdd, isSearching }) => {
     const [results, setResults] = useState(dummyResults);
     const [title, setTitle] = useState('');
     const handleTitleChange = (e) => {
@@ -33,7 +33,7 @@ export const SearchDialog = ({ onBookAdd }) => {
     };
     const handleBookAdd = () => {
     };
-    return (h("div", { className: "dialog" },
+    return (h("div", { className: "dialog", style: "{isSearching ? '' : 'display: none'}" },
         h("div", { className: "operation" },
             h("div", { className: "conditions" },
                 h("input", { type: "text", placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22", onChange: handleTitleChange }),
