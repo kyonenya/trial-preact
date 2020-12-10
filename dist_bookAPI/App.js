@@ -24,7 +24,7 @@ const dummyBooks = [
 ];
 export const App = () => {
     const [books, setBooks] = useState(dummyBooks);
-    const [isSearching, setIsSearching] = useState(false);
+    const [isSearching, setIsSearching] = useState(true);
     const handleDelete = (id) => {
         setBooks((prevBooks) => {
             return prevBooks.filter((book) => book.id !== id);
@@ -32,7 +32,16 @@ export const App = () => {
     };
     const handleAddClick = () => {
         setIsSearching((prev) => !prev);
-        //    alert(isSearching);
+    };
+    const handleBookAdd = (result) => {
+        setBooks((prevBooks) => {
+            return [...prevBooks, {
+                    id: 999,
+                    title: result.title,
+                    authors: result.authors,
+                    memo: '',
+                }];
+        });
     };
     return (h("div", { className: "App" },
         h("nav", { className: "nav" },
@@ -41,5 +50,5 @@ export const App = () => {
         h("main", { className: "main" }, books.map((book) => {
             return (h(Row, { book: book, key: book.id, onDelete: () => handleDelete(book.id) }));
         })),
-        h(SearchDialog, { isSearching: isSearching, onBookAdd: () => alert('added') })));
+        h(SearchDialog, { isSearching: isSearching, onBookAdd: handleBookAdd })));
 };

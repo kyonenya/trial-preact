@@ -58,7 +58,7 @@ function extractResults(json: any): resultable[] {
 }
 
 export const SearchDialog: FC<{
-  onBookAdd: () => void;
+  onBookAdd: (result: resultable) => void;
   isSearching: boolean;
 }> = ({ onBookAdd, isSearching }) => {
   const [results, setResults] = useState<resultable[]>(dummyResults);

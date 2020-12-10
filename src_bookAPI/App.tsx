@@ -2,7 +2,7 @@ import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
 import { Row } from './Row';
 import { SearchDialog } from './SearchDialog';
-import { bookable } from './types';
+import { bookable, resultable } from './types';
 
 const dummyBooks: bookable[] = [
   {
@@ -27,7 +27,7 @@ const dummyBooks: bookable[] = [
 
 export const App = () => {
   const [books, setBooks] = useState<bookable[]>(dummyBooks);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [isSearching, setIsSearching] = useState<boolean>(true);
 
   const handleDelete = (id: number) => {
     setBooks((prevBooks) => {
@@ -37,7 +37,17 @@ export const App = () => {
 
   const handleAddClick = () => {
     setIsSearching((prev) => !prev);
-    //    alert(isSearching);
+  };
+  
+  const handleBookAdd = (result: resultable) => {
+    setBooks((prevBooks) => {
+      return [ ...prevBooks, {
+        id: 999,
+        title: result.title,
+        authors: result.authors,
+        memo: '',
+      }];
+    })
   };
 
   return (
@@ -61,7 +71,7 @@ export const App = () => {
       </main>
       <SearchDialog
         isSearching={isSearching}
-        onBookAdd={() => alert('added')}
+        onBookAdd={handleBookAdd}
       />
     </div>
   );

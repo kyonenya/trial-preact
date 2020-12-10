@@ -5,17 +5,22 @@ const dummyResults = [
     {
         title: 'はじめてのReact',
         authors: '山田太郎',
-        thumbnail: '',
+        thumbnail: 'http://books.google.com/books/content?id=_OKoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
     },
     {
         title: 'React Hooks入門',
-        authors: '山田次郎',
-        thumbnail: '',
+        authors: '佐藤次郎',
+        thumbnail: 'http://books.google.com/books/content?id=2X23DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
     },
     {
         title: '実践Reactアプリケーション開発',
-        authors: '山田三郎',
-        thumbnail: '',
+        authors: '鈴木三郎',
+        thumbnail: 'http://books.google.com/books/content?id=2X23DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
+    },
+    {
+        title: 'React&Next.js入門',
+        authors: '田中四郎',
+        thumbnail: 'http://books.google.com/books/content?id=_OKoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
     },
 ];
 function buildSearchUrl(title, author, maxResults) {
@@ -67,7 +72,7 @@ export const SearchDialog = ({ onBookAdd, isSearching }) => {
             h("div", { className: "conditions" },
                 h("input", { type: "text", placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22", onChange: handleTitleChange }),
                 h("input", { type: "text", placeholder: "\u8457\u8005\u540D\u3067\u691C\u7D22" })),
-            h("div", { className: "button-like", onClick: handleSearchClick }, "\u691C\u7D22")),
+            h("div", { className: "button-like", onClick: handleSearchClick }, "[\u691C\u7D22]")),
         h("div", { className: "search-results" }, results.map((result, i) => {
             return h(SearchItem, { result: result, onBookAdd: onBookAdd, key: i });
         }))));

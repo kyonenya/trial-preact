@@ -3,7 +3,7 @@ import { resultable } from './types';
 
 export const SearchItem: FC<{
   result: resultable;
-  onBookAdd: () => void;
+  onBookAdd: (result: resultable) => void;
 }> = ({ result, onBookAdd }) => {
   const { title, authors, thumbnail } = result;
 
@@ -14,7 +14,7 @@ export const SearchItem: FC<{
         {authors}
       </div>
       {thumbnail ? <img src={thumbnail} alt="" /> : null}
-      <div className="add-book" onClick={onBookAdd}>
+      <div className="add-book" onClick={() => onBookAdd(result)}>
         <span>+</span>
       </div>
     </div>
