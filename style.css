@@ -4,14 +4,12 @@ html {
 }
 
 body {
-  width: 500;
   margin: 0 auto;
 }
 
 .App {
   text-align: center;
   margin: 0 auto;
-  width: 500;
 }
 
 .nav {
@@ -42,9 +40,7 @@ h1 {
 }
 
 .dialog {
-  width: 475px;
-  height: 325px;
-  /* background-color: #293652; */
+  height: 50vh;
   padding: 7px;
 }
 
@@ -56,8 +52,7 @@ h1 {
 
 .dialog input {
   font-size: 1.2rem;
-  height: 1.8rem;
-  width: 250px;
+  height: 1.2rem;
   margin-left: 5px;
   margin-bottom: 5px;
   padding: 5px;
@@ -79,26 +74,25 @@ h1 {
 .book-search-item {
   margin: 5px;
   padding: 5px;
-  background-color: #181a1f;
-  width: 145px;
-  height: 130px;
+  width: 35vw;
+  height: 35vw;
   text-align: center;
   position: relative;
+  border: 1px solid lightgray;
 }
 
 .book-search-item h2 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   height: 1.4rem;
-  margin: 2px 2px 2px;
-  padding: 2px 2px 2px 10px;
-  text-align: left;
-  width: 140px;
+  margin: 2px;
+  text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .book-search-item .authors {
+  font-size: 0.9rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -132,13 +126,13 @@ h1 {
 }
 
 .book-search-item img {
-  margin: 10px 5px;
-  height: 90px;
+  height: 22vw;
 }
 
 .book-row {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .book-row:nth-child(even) {
