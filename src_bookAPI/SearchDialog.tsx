@@ -12,12 +12,17 @@ const dummyResults: resultable[] = [
   },
   {
     title: 'React Hooks入門',
-    authors: '山田次郎',
-    thumbnail: 'http://books.google.com/books/content?id=_OKoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
+    authors: '佐藤次郎',
+    thumbnail: 'http://books.google.com/books/content?id=2X23DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
   },
   {
     title: '実践Reactアプリケーション開発',
-    authors: '山田三郎',
+    authors: '鈴木三郎',
+    thumbnail: 'http://books.google.com/books/content?id=2X23DwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
+  },
+  {
+    title: 'React&Next.js入門',
+    authors: '田中四郎',
     thumbnail: 'http://books.google.com/books/content?id=_OKoDwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
   },
 ];
@@ -97,7 +102,7 @@ export const SearchDialog: FC<{
           />
         </div>
         <div className="button-like" onClick={handleSearchClick}>
-          [検索]
+            [検索]
         </div>
       </div>
       <div className="search-results">
