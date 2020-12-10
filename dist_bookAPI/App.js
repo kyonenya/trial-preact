@@ -24,16 +24,20 @@ const dummyBooks = [
 ];
 export const App = () => {
     const [books, setBooks] = useState(dummyBooks);
-    const [isSearching, setIsSearching] = useState(true);
+    const [isSearching, setIsSearching] = useState(false);
     const handleDelete = (id) => {
         setBooks((prevBooks) => {
             return prevBooks.filter((book) => book.id !== id);
         });
     };
+    const handleAddClick = () => {
+        setIsSearching((prev) => !prev);
+        //    alert(isSearching);
+    };
     return (h("div", { className: "App" },
         h("nav", { className: "nav" },
             h("h1", null, "\u8AAD\u307F\u305F\u3044\u672C\u30EA\u30B9\u30C8"),
-            h("div", { className: "button-like", onClick: () => setIsSearching((prev) => !prev) }, "[Add]")),
+            h("div", { className: "button-like", onClick: handleAddClick }, "[Add]")),
         h("main", { className: "main" }, books.map((book) => {
             return (h(Row, { book: book, key: book.id, onDelete: () => handleDelete(book.id) }));
         })),

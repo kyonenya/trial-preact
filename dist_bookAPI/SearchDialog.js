@@ -18,6 +18,28 @@ const dummyResults = [
         thumbnail: '',
     },
 ];
+function buildSearchUrl(title, author, maxResults) {
+    let url = "https://www.googleapis.com/books/v1/volumes?q=";
+    const conditions = [];
+    if (title) {
+        conditions.push(`intitle:${title}`);
+    }
+    if (author) {
+        conditions.push(`inauthor:${author}`);
+    }
+    return url + conditions.join('+') + `&maxResults=${maxResults}`;
+}
+function extractBooks(json) {
+    const items = json.items;
+    return items.map((item) => {
+        const volumeInfo = item.volumeInfo;
+        return {
+            title: volumeInfo.title,
+            authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : "",
+            thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : "",
+        };
+    });
+}
 export const SearchDialog = ({ onBookAdd, isSearching }) => {
     const [results, setResults] = useState(dummyResults);
     const [title, setTitle] = useState('');
@@ -33,7 +55,7 @@ export const SearchDialog = ({ onBookAdd, isSearching }) => {
     };
     const handleBookAdd = () => {
     };
-    return (h("div", { className: "dialog", style: "{isSearching ? '' : 'display: none'}" },
+    return (h("div", { className: "dialog", style: { display: isSearching ? 'block' : 'none' } },
         h("div", { className: "operation" },
             h("div", { className: "conditions" },
                 h("input", { type: "text", placeholder: "\u30BF\u30A4\u30C8\u30EB\u3067\u691C\u7D22", onChange: handleTitleChange }),
