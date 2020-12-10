@@ -22,9 +22,13 @@ const dummyResults: resultable[] = [
   },
 ];
 
-function buildSearchUrl(title: string, author: string, maxResults: number): string {
-  let url = "https://www.googleapis.com/books/v1/volumes?q=";
-  const conditions: string[] = []
+function buildSearchUrl(
+  title: string,
+  author: string,
+  maxResults: number
+): string {
+  const url = 'https://www.googleapis.com/books/v1/volumes?q=';
+  const conditions: string[] = [];
   if (title) {
     conditions.push(`intitle:${title}`);
   }
@@ -40,66 +44,60 @@ function extractBooks(json: any): resultable[] {
     const volumeInfo: any = item.volumeInfo;
     return {
       title: volumeInfo.title,
-      authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : "",
-      thumbnail: volumeInfo.imageLinks ? volumeInfo.imageLinks.smallThumbnail : "",
-    }
+      authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : '',
+      thumbnail: volumeInfo.imageLinks
+        ? volumeInfo.imageLinks.smallThumbnail
+        : '',
+    };
   });
 }
 
 export const SearchDialog: FC<{
-  onBookAdd: () => void,
-  isSearching: boolean,
+  onBookAdd: () => void;
+  isSearching: boolean;
 }> = ({ onBookAdd, isSearching }) => {
   const [results, setResults] = useState<resultable[]>(dummyResults);
   const [title, setTitle] = useState<string>('');
-  
-  const handleTitleChange = (e: JSXInternal.TargetedEvent<HTMLInputElement>) => {
+
+  const handleTitleChange = (
+    e: JSXInternal.TargetedEvent<HTMLInputElement>
+  ) => {
     const inputElement = e.target as HTMLInputElement;
     setTitle(inputElement.value);
-//    alert(inputElement.value);
+    //    alert(inputElement.value);
   };
-  
+
   const handleSearchClick = () => {
     if (!title) return alert('検索ワードを入力して下さい');
     // TODO
   };
-  
-  const handleBookAdd = () => {
-    
-  };
+
+  const handleBookAdd = () => {};
 
   return (
-    <div className="dialog"
-      style={{ display: isSearching ? 'block' : 'none' }}
-    >
+    <div className="dialog" style={{ display: isSearching ? 'block' : 'none' }}>
       <div className="operation">
         <div className="conditions">
-          <input type="text"
+          <input
+            type="text"
             placeholder="タイトルで検索"
             onChange={handleTitleChange}
           />
-          <input type="text"
+          <input
+            type="text"
             placeholder="著者名で検索"
-//            onChange={handleAuthorInputChange}
+            //            onChange={handleAuthorInputChange}
           />
         </div>
-        <div className="button-like" 
-          onClick={handleSearchClick}
-        >
+        <div className="button-like" onClick={handleSearchClick}>
           検索
         </div>
       </div>
       <div className="search-results">
         {results.map((result, i) => {
-          return (
-            <SearchItem
-              result={result}
-              onBookAdd={onBookAdd}
-              key={i}
-            />
-          );
+          return <SearchItem result={result} onBookAdd={onBookAdd} key={i} />;
         })}
       </div>
     </div>
   );
-}
+};

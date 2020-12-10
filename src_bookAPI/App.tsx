@@ -28,25 +28,23 @@ const dummyBooks: bookable[] = [
 export const App = () => {
   const [books, setBooks] = useState<bookable[]>(dummyBooks);
   const [isSearching, setIsSearching] = useState<boolean>(false);
-  
+
   const handleDelete = (id: number) => {
     setBooks((prevBooks) => {
       return prevBooks.filter((book) => book.id !== id);
     });
   };
-  
+
   const handleAddClick = () => {
     setIsSearching((prev) => !prev);
-//    alert(isSearching);
+    //    alert(isSearching);
   };
-  
+
   return (
     <div className="App">
       <nav className="nav">
         <h1>読みたい本リスト</h1>
-        <div className="button-like"
-          onClick={handleAddClick}
-        >
+        <div className="button-like" onClick={handleAddClick}>
           [Add]
         </div>
       </nav>
