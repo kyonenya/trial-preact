@@ -1,5 +1,6 @@
 import { h, FunctionComponent as FC } from 'preact';
 import { useState } from 'preact/hooks';
+import { JSXInternal } from 'preact/src/jsx';
 import { SearchItem } from './SearchItem';
 import { resultable } from './types';
 
@@ -23,6 +24,12 @@ const dummyResults: resultable[] = [
 
 export const SearchDialog = () => {
   const [results, setResults] = useState<resultable[]>(dummyResults);
+  const [title, setTitle] = useState<string>('');
+  
+  const handleTitleChange = (e: JSXInternal.TargetedEvent<HTMLInputElement>) => {
+    const inputElement = e.target as HTMLInputElement;
+    setTitle(inputElement.value);
+  };
 
   return (
     <div className="dialog">
@@ -30,7 +37,7 @@ export const SearchDialog = () => {
         <div className="conditions">
           <input type="text"
             placeholder="タイトルで検索"
-//            onChange={handleTitleInputChange}
+            onChange={handleTitleChange}
           />
           <input type="text"
             placeholder="著者名で検索"
