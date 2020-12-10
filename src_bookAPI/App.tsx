@@ -51,7 +51,9 @@ export const App = () => {
           );
         })}
       </main>
-      <SearchDialog />
+      <SearchDialog 
+        onBookAdd={() => alert('added')}
+      />
     </div>
   );
 };

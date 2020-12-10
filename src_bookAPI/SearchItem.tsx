@@ -2,8 +2,9 @@ import { h, FunctionComponent as FC } from 'preact';
 import { resultable } from './types';
 
 export const SearchItem: FC<{
-  result: resultable
-}> = ({ result }) => {
+  result: resultable,
+  onBookAdd: () => void,
+}> = ({ result, onBookAdd }) => {
   const { title, authors, thumbnail } = result;
   
   return (
@@ -14,7 +15,7 @@ export const SearchItem: FC<{
       </div>
       {thumbnail ? <img src={thumbnail} alt="" /> : null}
       <div className="add-book" 
-//        onClick={handleAddBookClick}
+        onClick={onBookAdd}
       >
         <span>+</span>
       </div>

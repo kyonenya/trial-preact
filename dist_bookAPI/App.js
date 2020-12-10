@@ -36,5 +36,5 @@ export const App = () => {
         h("main", { className: "main" }, books.map((book) => {
             return (h(Row, { book: book, key: book.id, onDelete: () => handleDelete(book.id) }));
         })),
-        h(SearchDialog, null)));
+        h(SearchDialog, { onBookAdd: () => { } })));
 };

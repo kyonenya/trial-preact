@@ -22,13 +22,25 @@ const dummyResults: resultable[] = [
   },
 ];
 
-export const SearchDialog = () => {
+export const SearchDialog: FC<{
+  onBookAdd: () => void,
+}> = ({ onBookAdd }) => {
   const [results, setResults] = useState<resultable[]>(dummyResults);
   const [title, setTitle] = useState<string>('');
   
   const handleTitleChange = (e: JSXInternal.TargetedEvent<HTMLInputElement>) => {
     const inputElement = e.target as HTMLInputElement;
     setTitle(inputElement.value);
+//    alert(inputElement.value);
+  };
+  
+  const handleSearchClick = () => {
+    if (!title) return alert('検索ワードを入力して下さい');
+    // TODO
+  };
+  
+  const handleBookAdd = () => {
+    
   };
 
   return (
@@ -45,7 +57,7 @@ export const SearchDialog = () => {
           />
         </div>
         <div className="button-like" 
-//          onClick={handleSearchClick}
+          onClick={handleSearchClick}
         >
           検索
         </div>
@@ -53,8 +65,9 @@ export const SearchDialog = () => {
       <div className="search-results">
         {results.map((result, i) => {
           return (
-            <SearchItem 
+            <SearchItem
               result={result}
+              onBookAdd={onBookAdd}
               key={i}
             />
           );

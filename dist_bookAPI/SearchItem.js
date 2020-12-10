@@ -1,5 +1,5 @@
 import { h } from 'preact';
-export const SearchItem = ({ result }) => {
+export const SearchItem = ({ result, onBookAdd }) => {
     const { title, authors, thumbnail } = result;
     return (h("div", { className: "book-search-item" },
         h("h2", { title: title }, title),
