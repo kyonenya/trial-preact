@@ -13,7 +13,7 @@ export const SearchItem: FC<{
       <div className="authors" title={authors}>
         {authors}
       </div>
-      {thumbnail ? <img src={thumbnail} alt="" /> : null}
+        {thumbnail ? <img src={thumbnail} alt="" /> : null}
       <div className="add-book" onClick={() => onBookAdd(result)}>
         <span>+</span>
       </div>

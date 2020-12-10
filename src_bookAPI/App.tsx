@@ -42,7 +42,7 @@ export const App = () => {
   const handleBookAdd = (result: resultable) => {
     setBooks((prevBooks) => {
       return [ ...prevBooks, {
-        id: 999,
+        id: prevBooks.length + 1,
         title: result.title,
         authors: result.authors,
         memo: '',

@@ -54,7 +54,8 @@ export const SearchDialog = ({ onBookAdd, isSearching }) => {
         fetch(buildSearchUrl(title, '', 4))
             .then((res) => res.json())
             .then((json) => extractResults(json))
-            .then((results) => setResults(results));
+            .then((results) => setResults(results))
+            .then(() => console.log('searched'));
     });
     const handleTitleChange = (e) => {
         const inputElement = e.target;
@@ -66,7 +67,6 @@ export const SearchDialog = ({ onBookAdd, isSearching }) => {
             return alert('検索ワードを入力して下さい');
         // TODO
     };
-    const handleBookAdd = () => { };
     return (h("div", { className: "dialog", style: { display: isSearching ? 'block' : 'none' } },
         h("div", { className: "operation" },
             h("div", { className: "conditions" },

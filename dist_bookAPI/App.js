@@ -36,7 +36,7 @@ export const App = () => {
     const handleBookAdd = (result) => {
         setBooks((prevBooks) => {
             return [...prevBooks, {
-                    id: 999,
+                    id: prevBooks.length + 1,
                     title: result.title,
                     authors: result.authors,
                     memo: '',

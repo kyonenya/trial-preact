@@ -68,7 +68,8 @@ export const SearchDialog: FC<{
     fetch(buildSearchUrl(title, '', 4))
       .then((res) => res.json())
       .then((json) => extractResults(json))
-      .then((results) => setResults(results));
+      .then((results) => setResults(results))
+      .then(() => console.log('searched'));
   });
   
   const handleTitleChange = (
@@ -83,9 +84,7 @@ export const SearchDialog: FC<{
     if (!title) return alert('検索ワードを入力して下さい');
     // TODO
   };
-
-  const handleBookAdd = () => {};
-
+  
   return (
     <div className="dialog" style={{ display: isSearching ? 'block' : 'none' }}>
       <div className="operation">
