@@ -1,5 +1,5 @@
 import { h, FunctionComponent as FC } from 'preact';
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { Row } from './Row';
 import { SearchDialog } from './SearchDialog';
 import { bookable, resultable } from './types';
@@ -26,8 +26,23 @@ const dummyBooks: bookable[] = [
 ];
 
 export const App = () => {
+  const APP_KEY = 'bookAPI';
+  
   const [books, setBooks] = useState<bookable[]>(dummyBooks);
   const [isSearching, setIsSearching] = useState<boolean>(true);
+  
+  // booksステートが変わるたびにデータを保存
+  useEffect(() => {
+    localStorage.setItem(APP_KEY, JSON.stringify(books));
+  }, [books]);
+  
+  // 初回レンダリング時にデータをロード
+  useEffect(() => {
+    const storedBooks = localStorage.getItem(APP_KEY);
+    if (storedBooks) {
+      setBooks(JSON.parse(storedBooks));
+    }
+  }, []);
 
   const handleDelete = (id: number) => {
     setBooks((prevBooks) => {
