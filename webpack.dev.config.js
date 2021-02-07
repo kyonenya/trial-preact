@@ -3,11 +3,14 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src_bookAPI/index.tsx',
+  entry: './src_router/index.tsx',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/dist/'
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   module: {
     rules: [
@@ -23,7 +26,11 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', 'jsx']
+    extensions: ['.tsx', '.ts', '.js', 'jsx'],
+    alias: {
+      'react': 'preact/compat',
+      'react-dom': 'preact/compat',
+    },
   },
   plugins: [],
 }
