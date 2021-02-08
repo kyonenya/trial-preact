@@ -1,5 +1,7 @@
 import { h, Fragment } from 'preact';
 import { Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Anchors } from './Anchors';
 
 export const App = () => {
   return (
@@ -11,8 +13,8 @@ export const App = () => {
         <Route path="/works">
           <h2>Works</h2>
         </Route>      
-        <Route path="/about">
-          <h2>About</h2>
+        <Route>
+          <h2>404</h2>
         </Route>
       </Switch>
     </Fragment>

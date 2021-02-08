@@ -12,11 +12,10 @@ const app = express();
 app.use(middleware);
 
 // Route
-app.get('/', (req, res) => {
+app.use(express.static(__dirname));
+app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
 });
-const rootDir = __dirname;
-app.use(express.static(rootDir));
 
 // Launch app
 const port = process.env['WEB_APP_PORT']

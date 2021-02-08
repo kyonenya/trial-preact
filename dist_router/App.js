@@ -5,8 +5,8 @@ export const App = () => {
         h(Switch, null,
             h(Route, { path: "/" },
                 h("h2", null, "Home")),
-            h(Route, { path: "/?works" },
+            h(Route, { path: "/works" },
                 h("h2", null, "Works")),
-            h(Route, { path: "/?about" },
-                h("h2", null, "About")))));
+            h(Route, null,
+                h("h2", null, "404")))));
 };
