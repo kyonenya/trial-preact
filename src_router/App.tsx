@@ -1,17 +1,21 @@
 import { h } from 'preact';
 import { Home, SiteMap } from './components/pages';
-import { Route, Link } from 'wouter';
+import { Switch, Route, Link, Redirect } from 'wouter';
 
 export const App = () => {
   return (
     <div>
       <Link href="/sitemap">SiteMap</Link>
-      <Route path="/">
-        <Home />
-      </Route>
-      <Route path="/sitemap">
-        <SiteMap />
-      </Route>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+
+        <Route path="/sitemap/:pagename">
+          <SiteMap />
+        </Route>
+
+      </Switch>
     </div>
   );
 }

@@ -2,7 +2,7 @@
   "name": "try-preact",
   "version": "1.0.0",
   "scripts": {
-    "typescript": "tsc --watch",
+    "tsc": "tsc --watch",
     "lint": "node index_lint.js"
   },
   "dependencies": {

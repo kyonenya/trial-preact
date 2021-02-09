@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import { useRoute } from 'wouter';
 
 export const Home = () => {
   return (
@@ -7,6 +8,8 @@ export const Home = () => {
 };
 
 export const SiteMap = () => {
+  const [match, params] = useRoute('/sitemap/:pagename');
+  console.log(match, params);
   return (
     <h1>SiteMap</h1>
   );
