@@ -1,12 +1,11 @@
-import { h, Fragment } from 'preact';
-import { Route, Switch } from 'react-router';
+import { h } from 'preact';
+import { Home, SiteMap } from './components/pages';
+import { Route, Link } from 'wouter';
 export const App = () => {
-    return (h(Fragment, null,
-        h(Switch, null,
-            h(Route, { path: "/" },
-                h("h2", null, "Home")),
-            h(Route, { path: "/works" },
-                h("h2", null, "Works")),
-            h(Route, null,
-                h("h2", null, "404")))));
+    return (h("div", null,
+        h(Link, { href: "/sitemap" }, "SiteMap"),
+        h(Route, { path: "/" },
+            h(Home, null)),
+        h(Route, { path: "/sitemap" },
+            h(SiteMap, null))));
 };
