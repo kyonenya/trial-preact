@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { Link, Route, useLocation, useSearchParam } from "wouter";
+import { Link, Route, useLocation } from "wouter";
 
 export const CurrentLocation = () => {
   const [location, setLocation] = useLocation();
