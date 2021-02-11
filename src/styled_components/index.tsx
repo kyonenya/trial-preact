@@ -2,6 +2,6 @@ import { h, render } from 'preact';
 import { App } from './App';
 
 render(
-  <App isPrimary={true}/>,
+  <App />,
   document.getElementById('root')!
 );

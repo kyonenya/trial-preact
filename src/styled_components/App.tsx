@@ -1,16 +1,13 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import styled from 'styled-components';
+import { Basic } from './Basic';
+import { Extend } from './Extend';
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: ${props => props.isPrimary ? 'palevioletred' : 'tomato'};
-`;
-
-export const App = (props: any) => {
+export const App = () => {
   return (
-    <Title>
-      Hello world
-    </Title>
+    <Fragment>
+      <Basic isPrimary={true}/>
+      <Extend />
+    </Fragment>
   );
 };
