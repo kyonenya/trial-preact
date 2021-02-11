@@ -74,9 +74,9 @@
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
 },
 // 35 include コンパイルするファイルを指定
-// "include": [
-//   "src_wouter/*"
-// ],
+  "include": [
+   "src/styled_components/*"
+  ],
 // 35 exclude コンパイルしないファイルを除外する
 // "exclude": [
 //   "node_modules"
